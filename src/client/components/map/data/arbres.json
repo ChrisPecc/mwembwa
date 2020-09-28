@@ -1,0 +1,995 @@
+[
+    {
+      "y_lambert72": 149682.77,
+      "arbotag": 1770,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5805,
+      "geoloc": {
+        "lat": 50.651474,
+        "lon": 5.5805
+      },
+      "hauteur_totale": 17.3,
+      "x_lambert72": 235689.14,
+      "y_phi": 50.651474,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 136
+    },
+    {
+      "y_lambert72": 149688.6,
+      "arbotag": 1771,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.580591,
+      "geoloc": {
+        "lat": 50.651524,
+        "lon": 5.580591
+      },
+      "hauteur_totale": 18.1,
+      "x_lambert72": 235695.48,
+      "y_phi": 50.651524,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 11,
+      "circonf": 165
+    },
+    {
+      "y_lambert72": 149693.1,
+      "arbotag": 1772,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5806785,
+      "geoloc": {
+        "lat": 50.65156,
+        "lon": 5.5806785
+      },
+      "hauteur_totale": 18.2,
+      "x_lambert72": 235701.58,
+      "y_phi": 50.65156,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 110
+    },
+    {
+      "y_lambert72": 149700.5,
+      "arbotag": 1700,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.581035,
+      "geoloc": {
+        "lat": 50.651627,
+        "lon": 5.581035
+      },
+      "hauteur_totale": 16.7,
+      "x_lambert72": 235726.7,
+      "y_phi": 50.651627,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 10,
+      "circonf": 77
+    },
+    {
+      "y_lambert72": 149652.61,
+      "arbotag": 1657,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.575368,
+      "geoloc": {
+        "lat": 50.651253,
+        "lon": 5.575368
+      },
+      "hauteur_totale": 9.5,
+      "x_lambert72": 235326.66,
+      "y_phi": 50.651253,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 5,
+      "circonf": 35
+    },
+    {
+      "y_lambert72": 149629.6,
+      "arbotag": 1654,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5753293,
+      "geoloc": {
+        "lat": 50.651047,
+        "lon": 5.5753293
+      },
+      "hauteur_totale": 22.0,
+      "x_lambert72": 235324.28,
+      "y_phi": 50.651047,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 8,
+      "circonf": 169
+    },
+    {
+      "y_lambert72": 149624.81,
+      "arbotag": 1635,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5751634,
+      "geoloc": {
+        "lat": 50.651005,
+        "lon": 5.5751634
+      },
+      "hauteur_totale": 23.5,
+      "x_lambert72": 235312.64,
+      "y_phi": 50.651005,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 208
+    },
+    {
+      "y_lambert72": 149623.77,
+      "arbotag": 1653,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5753164,
+      "geoloc": {
+        "lat": 50.650997,
+        "lon": 5.5753164
+      },
+      "hauteur_totale": 23.5,
+      "x_lambert72": 235323.48,
+      "y_phi": 50.650997,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 11,
+      "circonf": 184
+    },
+    {
+      "y_lambert72": 147833.56,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.6304464,
+      "geoloc": {
+        "lat": 50.634315,
+        "lon": 5.6304464
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 239253.23,
+      "y_phi": 50.634315,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 151409.02,
+      "arbotag": 14396,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5664897,
+      "geoloc": {
+        "lat": 50.667137,
+        "lon": 5.5664897
+      },
+      "hauteur_totale": 2.5,
+      "x_lambert72": 234670.38,
+      "y_phi": 50.667137,
+      "nom_complet": "Prunus serrulata 'Sunset Boulevard'",
+      "diametre_cime": null,
+      "circonf": 25
+    },
+    {
+      "y_lambert72": 151387.69,
+      "arbotag": 14397,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.566485,
+      "geoloc": {
+        "lat": 50.666946,
+        "lon": 5.566485
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 234670.38,
+      "y_phi": 50.666946,
+      "nom_complet": "Prunus serrulata 'Sunset Boulevard'",
+      "diametre_cime": null,
+      "circonf": 25
+    },
+    {
+      "y_lambert72": 147827.34,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.6301723,
+      "geoloc": {
+        "lat": 50.634262,
+        "lon": 5.6301723
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 239233.94,
+      "y_phi": 50.634262,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 147830.17,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.6297636,
+      "geoloc": {
+        "lat": 50.634293,
+        "lon": 5.6297636
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 239204.95,
+      "y_phi": 50.634293,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 148806.02,
+      "arbotag": 16240,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.6354003,
+      "geoloc": {
+        "lat": 50.643005,
+        "lon": 5.6354003
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 239587.12,
+      "y_phi": 50.643005,
+      "nom_complet": "Tilia x europaea",
+      "diametre_cime": null,
+      "circonf": 125
+    },
+    {
+      "y_lambert72": 149546.77,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5761557,
+      "geoloc": {
+        "lat": 50.650295,
+        "lon": 5.5761557
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 235384.08,
+      "y_phi": 50.650295,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 149544.12,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5766373,
+      "geoloc": {
+        "lat": 50.650265,
+        "lon": 5.5766373
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 235418.2,
+      "y_phi": 50.650265,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 149549.16,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5768147,
+      "geoloc": {
+        "lat": 50.65031,
+        "lon": 5.5768147
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 235430.66,
+      "y_phi": 50.65031,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 149540.16,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5767527,
+      "geoloc": {
+        "lat": 50.65023,
+        "lon": 5.5767527
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 235426.4,
+      "y_phi": 50.65023,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 149528.52,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5771766,
+      "geoloc": {
+        "lat": 50.65012,
+        "lon": 5.5771766
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 235456.58,
+      "y_phi": 50.65012,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 147280.64,
+      "arbotag": 14272,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.562202,
+      "geoloc": {
+        "lat": 50.630062,
+        "lon": 5.562202
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 234433.6,
+      "y_phi": 50.630062,
+      "nom_complet": "Pyrus calleryana 'Chanticleer'",
+      "diametre_cime": null,
+      "circonf": 25
+    },
+    {
+      "y_lambert72": 147325.62,
+      "arbotag": 14278,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5619316,
+      "geoloc": {
+        "lat": 50.63047,
+        "lon": 5.5619316
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 234413.75,
+      "y_phi": 50.63047,
+      "nom_complet": "Pyrus calleryana 'Chanticleer'",
+      "diametre_cime": null,
+      "circonf": 75
+    },
+    {
+      "y_lambert72": 147271.12,
+      "arbotag": 14284,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.562364,
+      "geoloc": {
+        "lat": 50.629974,
+        "lon": 5.562364
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 234445.23,
+      "y_phi": 50.629974,
+      "nom_complet": "Pyrus calleryana 'Chanticleer'",
+      "diametre_cime": null,
+      "circonf": 75
+    },
+    {
+      "y_lambert72": 147277.73,
+      "arbotag": 14283,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.562317,
+      "geoloc": {
+        "lat": 50.630035,
+        "lon": 5.562317
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 234441.8,
+      "y_phi": 50.630035,
+      "nom_complet": "Pyrus calleryana 'Chanticleer'",
+      "diametre_cime": null,
+      "circonf": 75
+    },
+    {
+      "y_lambert72": 147284.34,
+      "arbotag": 14282,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.562285,
+      "geoloc": {
+        "lat": 50.630096,
+        "lon": 5.562285
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 234439.4,
+      "y_phi": 50.630096,
+      "nom_complet": "Pyrus calleryana 'Chanticleer'",
+      "diametre_cime": null,
+      "circonf": 75
+    },
+    {
+      "y_lambert72": 147810.73,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.629893,
+      "geoloc": {
+        "lat": 50.634117,
+        "lon": 5.629893
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 239214.42,
+      "y_phi": 50.634117,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 150793.05,
+      "arbotag": 1077,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.583716,
+      "geoloc": {
+        "lat": 50.661423,
+        "lon": 5.583716
+      },
+      "hauteur_totale": 19.3,
+      "x_lambert72": 235898.44,
+      "y_phi": 50.661423,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 11,
+      "circonf": 176
+    },
+    {
+      "y_lambert72": 151027.28,
+      "arbotag": 1108,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5814037,
+      "geoloc": {
+        "lat": 50.66355,
+        "lon": 5.5814037
+      },
+      "hauteur_totale": 17.4,
+      "x_lambert72": 235731.1,
+      "y_phi": 50.66355,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 4,
+      "circonf": 85
+    },
+    {
+      "y_lambert72": 150913.69,
+      "arbotag": 999,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5921946,
+      "geoloc": {
+        "lat": 50.66242,
+        "lon": 5.5921946
+      },
+      "hauteur_totale": 22.8,
+      "x_lambert72": 236495.97,
+      "y_phi": 50.66242,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 198
+    },
+    {
+      "y_lambert72": 150680.88,
+      "arbotag": 902,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5863633,
+      "geoloc": {
+        "lat": 50.660385,
+        "lon": 5.5863633
+      },
+      "hauteur_totale": 19.5,
+      "x_lambert72": 236087.47,
+      "y_phi": 50.660385,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 8,
+      "circonf": 169
+    },
+    {
+      "y_lambert72": 150677.06,
+      "arbotag": 904,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.586533,
+      "geoloc": {
+        "lat": 50.66035,
+        "lon": 5.586533
+      },
+      "hauteur_totale": 18.3,
+      "x_lambert72": 236099.55,
+      "y_phi": 50.66035,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 10,
+      "circonf": 182
+    },
+    {
+      "y_lambert72": 150667.23,
+      "arbotag": 906,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.586733,
+      "geoloc": {
+        "lat": 50.66026,
+        "lon": 5.586733
+      },
+      "hauteur_totale": 17.4,
+      "x_lambert72": 236113.81,
+      "y_phi": 50.66026,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 8,
+      "circonf": 184
+    },
+    {
+      "y_lambert72": 150651.98,
+      "arbotag": 909,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.586981,
+      "geoloc": {
+        "lat": 50.66012,
+        "lon": 5.586981
+      },
+      "hauteur_totale": 19.7,
+      "x_lambert72": 236131.6,
+      "y_phi": 50.66012,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 11,
+      "circonf": 221
+    },
+    {
+      "y_lambert72": 150636.44,
+      "arbotag": 912,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5872827,
+      "geoloc": {
+        "lat": 50.659977,
+        "lon": 5.5872827
+      },
+      "hauteur_totale": 18.9,
+      "x_lambert72": 236153.19,
+      "y_phi": 50.659977,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 173
+    },
+    {
+      "y_lambert72": 150642.47,
+      "arbotag": 922,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.588321,
+      "geoloc": {
+        "lat": 50.66002,
+        "lon": 5.588321
+      },
+      "hauteur_totale": 17.8,
+      "x_lambert72": 236226.55,
+      "y_phi": 50.66002,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 15,
+      "circonf": 224
+    },
+    {
+      "y_lambert72": 150633.27,
+      "arbotag": 918,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5879283,
+      "geoloc": {
+        "lat": 50.659943,
+        "lon": 5.5879283
+      },
+      "hauteur_totale": 16.4,
+      "x_lambert72": 236198.9,
+      "y_phi": 50.659943,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 168
+    },
+    {
+      "y_lambert72": 150653.38,
+      "arbotag": 924,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5888033,
+      "geoloc": {
+        "lat": 50.660114,
+        "lon": 5.5888033
+      },
+      "hauteur_totale": 20.6,
+      "x_lambert72": 236260.44,
+      "y_phi": 50.660114,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 209
+    },
+    {
+      "y_lambert72": 150659.4,
+      "arbotag": 927,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5890827,
+      "geoloc": {
+        "lat": 50.660164,
+        "lon": 5.5890827
+      },
+      "hauteur_totale": 20.7,
+      "x_lambert72": 236280.12,
+      "y_phi": 50.660164,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 6,
+      "circonf": 117
+    },
+    {
+      "y_lambert72": 150913.06,
+      "arbotag": 979,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5928993,
+      "geoloc": {
+        "lat": 50.662403,
+        "lon": 5.5928993
+      },
+      "hauteur_totale": 22.6,
+      "x_lambert72": 236545.81,
+      "y_phi": 50.662403,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 15,
+      "circonf": 211
+    },
+    {
+      "y_lambert72": 150675.28,
+      "arbotag": 935,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5898366,
+      "geoloc": {
+        "lat": 50.660297,
+        "lon": 5.5898366
+      },
+      "hauteur_totale": 20.8,
+      "x_lambert72": 236333.16,
+      "y_phi": 50.660297,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 203
+    },
+    {
+      "y_lambert72": 150905.31,
+      "arbotag": 976,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5924783,
+      "geoloc": {
+        "lat": 50.66234,
+        "lon": 5.5924783
+      },
+      "hauteur_totale": 21.0,
+      "x_lambert72": 236516.16,
+      "y_phi": 50.66234,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 11,
+      "circonf": 178
+    },
+    {
+      "y_lambert72": 150676.55,
+      "arbotag": 936,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5899177,
+      "geoloc": {
+        "lat": 50.66031,
+        "lon": 5.5899177
+      },
+      "hauteur_totale": 20.8,
+      "x_lambert72": 236338.86,
+      "y_phi": 50.66031,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 8,
+      "circonf": 214
+    },
+    {
+      "y_lambert72": 150682.58,
+      "arbotag": 938,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.590202,
+      "geoloc": {
+        "lat": 50.660362,
+        "lon": 5.590202
+      },
+      "hauteur_totale": 19.8,
+      "x_lambert72": 236358.88,
+      "y_phi": 50.660362,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 4,
+      "circonf": 93
+    },
+    {
+      "y_lambert72": 147118.48,
+      "arbotag": 204,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.577277,
+      "geoloc": {
+        "lat": 50.62845,
+        "lon": 5.577277
+      },
+      "hauteur_totale": 21.5,
+      "x_lambert72": 235502.95,
+      "y_phi": 50.62845,
+      "nom_complet": "Pinus sylvestris",
+      "diametre_cime": 7,
+      "circonf": 154
+    },
+    {
+      "y_lambert72": 147768.69,
+      "arbotag": null,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.6303535,
+      "geoloc": {
+        "lat": 50.633736,
+        "lon": 5.6303535
+      },
+      "hauteur_totale": null,
+      "x_lambert72": 239247.75,
+      "y_phi": 50.633736,
+      "nom_complet": "en cours de détermination",
+      "diametre_cime": null,
+      "circonf": null
+    },
+    {
+      "y_lambert72": 148356.55,
+      "arbotag": 4833,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5783916,
+      "geoloc": {
+        "lat": 50.63957,
+        "lon": 5.5783916
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 235561.64,
+      "y_phi": 50.63957,
+      "nom_complet": "Tilia X Europaea",
+      "diametre_cime": null,
+      "circonf": 75
+    },
+    {
+      "y_lambert72": 148349.56,
+      "arbotag": 4832,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.57837,
+      "geoloc": {
+        "lat": 50.639507,
+        "lon": 5.57837
+      },
+      "hauteur_totale": 12.5,
+      "x_lambert72": 235560.22,
+      "y_phi": 50.639507,
+      "nom_complet": "Tilia X Europaea",
+      "diametre_cime": null,
+      "circonf": 75
+    },
+    {
+      "y_lambert72": 148366.08,
+      "arbotag": 4834,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5784097,
+      "geoloc": {
+        "lat": 50.639656,
+        "lon": 5.5784097
+      },
+      "hauteur_totale": 7.5,
+      "x_lambert72": 235562.77,
+      "y_phi": 50.639656,
+      "nom_complet": "Tilia X Europaea",
+      "diametre_cime": null,
+      "circonf": 75
+    },
+    {
+      "y_lambert72": 148685.38,
+      "arbotag": 4867,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5791264,
+      "geoloc": {
+        "lat": 50.642517,
+        "lon": 5.5791264
+      },
+      "hauteur_totale": 12.5,
+      "x_lambert72": 235608.25,
+      "y_phi": 50.642517,
+      "nom_complet": "Tilia X Europaea",
+      "diametre_cime": null,
+      "circonf": 125
+    },
+    {
+      "y_lambert72": 148641.67,
+      "arbotag": 4861,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5790286,
+      "geoloc": {
+        "lat": 50.642128,
+        "lon": 5.5790286
+      },
+      "hauteur_totale": 17.5,
+      "x_lambert72": 235602.05,
+      "y_phi": 50.642128,
+      "nom_complet": "Tilia X Europaea",
+      "diametre_cime": null,
+      "circonf": 200
+    },
+    {
+      "y_lambert72": 150695.6,
+      "arbotag": 943,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5907974,
+      "geoloc": {
+        "lat": 50.660473,
+        "lon": 5.5907974
+      },
+      "hauteur_totale": 20.0,
+      "x_lambert72": 236400.78,
+      "y_phi": 50.660473,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 8,
+      "circonf": 228
+    },
+    {
+      "y_lambert72": 150697.19,
+      "arbotag": 944,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5908966,
+      "geoloc": {
+        "lat": 50.660484,
+        "lon": 5.5908966
+      },
+      "hauteur_totale": 20.0,
+      "x_lambert72": 236407.77,
+      "y_phi": 50.660484,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 8,
+      "circonf": 217
+    },
+    {
+      "y_lambert72": 150699.4,
+      "arbotag": 945,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5909915,
+      "geoloc": {
+        "lat": 50.660503,
+        "lon": 5.5909915
+      },
+      "hauteur_totale": 17.3,
+      "x_lambert72": 236414.44,
+      "y_phi": 50.660503,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 8,
+      "circonf": 156
+    },
+    {
+      "y_lambert72": 150703.84,
+      "arbotag": 947,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.591199,
+      "geoloc": {
+        "lat": 50.66054,
+        "lon": 5.591199
+      },
+      "hauteur_totale": 17.3,
+      "x_lambert72": 236429.03,
+      "y_phi": 50.66054,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 8,
+      "circonf": 142
+    },
+    {
+      "y_lambert72": 150748.3,
+      "arbotag": 953,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.591654,
+      "geoloc": {
+        "lat": 50.660934,
+        "lon": 5.591654
+      },
+      "hauteur_totale": 19.7,
+      "x_lambert72": 236460.47,
+      "y_phi": 50.660934,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 11,
+      "circonf": 236
+    },
+    {
+      "y_lambert72": 150801.31,
+      "arbotag": 961,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.591729,
+      "geoloc": {
+        "lat": 50.66141,
+        "lon": 5.591729
+      },
+      "hauteur_totale": 21.4,
+      "x_lambert72": 236464.9,
+      "y_phi": 50.66141,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 231
+    },
+    {
+      "y_lambert72": 150815.94,
+      "arbotag": 963,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5917506,
+      "geoloc": {
+        "lat": 50.661545,
+        "lon": 5.5917506
+      },
+      "hauteur_totale": 23.5,
+      "x_lambert72": 236466.19,
+      "y_phi": 50.661545,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 212
+    },
+    {
+      "y_lambert72": 150839.73,
+      "arbotag": 966,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5917873,
+      "geoloc": {
+        "lat": 50.66176,
+        "lon": 5.5917873
+      },
+      "hauteur_totale": 22.1,
+      "x_lambert72": 236468.4,
+      "y_phi": 50.66176,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 219
+    },
+    {
+      "y_lambert72": 150865.45,
+      "arbotag": 970,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5919104,
+      "geoloc": {
+        "lat": 50.661987,
+        "lon": 5.5919104
+      },
+      "hauteur_totale": 21.3,
+      "x_lambert72": 236476.66,
+      "y_phi": 50.661987,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 9,
+      "circonf": 230
+    },
+    {
+      "y_lambert72": 150690.66,
+      "arbotag": 1060,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.5857453,
+      "geoloc": {
+        "lat": 50.66048,
+        "lon": 5.5857453
+      },
+      "hauteur_totale": 16.4,
+      "x_lambert72": 236043.61,
+      "y_phi": 50.66048,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 5,
+      "circonf": 122
+    },
+    {
+      "y_lambert72": 150690.97,
+      "arbotag": 1058,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.585907,
+      "geoloc": {
+        "lat": 50.66048,
+        "lon": 5.585907
+      },
+      "hauteur_totale": 21.0,
+      "x_lambert72": 236055.05,
+      "y_phi": 50.66048,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 7,
+      "circonf": 179
+    },
+    {
+      "y_lambert72": 150684.94,
+      "arbotag": 1052,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.586584,
+      "geoloc": {
+        "lat": 50.66042,
+        "lon": 5.586584
+      },
+      "hauteur_totale": 16.5,
+      "x_lambert72": 236102.98,
+      "y_phi": 50.66042,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 10,
+      "circonf": 178
+    },
+    {
+      "y_lambert72": 150670.34,
+      "arbotag": 1050,
+      "date_donnees": "2020-05-14T00:00:00+00:00",
+      "x_lambda": 5.586926,
+      "geoloc": {
+        "lat": 50.660286,
+        "lon": 5.586926
+      },
+      "hauteur_totale": 16.4,
+      "x_lambert72": 236127.44,
+      "y_phi": 50.660286,
+      "nom_complet": "Platanus x acerifolia",
+      "diametre_cime": 17,
+      "circonf": 219
+    }
+  ]
+  
