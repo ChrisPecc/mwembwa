@@ -40,11 +40,13 @@
     "lint-staged": "^10.2.3",
     "prettier": "^2.0.5",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "composer": "^4.1.0",
     "express": "^4.17.1",
+    "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -52,5 +54,15 @@
     "hooks": {
       "pre-commit": "npx lint-staged"
     }
-  }
+  },
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisPecc/mwembwa.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/ChrisPecc/mwembwa/issues"
+  },
+  "homepage": "https://github.com/ChrisPecc/mwembwa#readme"
 }
