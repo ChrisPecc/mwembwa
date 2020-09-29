@@ -1,6 +1,6 @@
 import React from "react";
 import {Map, TileLayer} from "react-leaflet";
-import SingleMarker from "./marker";
+import MarkerCluster from "./marker-cluster";
 import arbres from "./data/arbres.json";
 
 const MainMap = () => {
@@ -8,7 +8,7 @@ const MainMap = () => {
     return (
         <Map
             center={[coordinateCenterMap.lat, coordinateCenterMap.lng]}
-            zoom={17}
+            zoom={18}
             minZoom={12}>
             <TileLayer
                 url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
@@ -17,7 +17,7 @@ const MainMap = () => {
                 }
             />
             {arbres.map(arbre => (
-                <SingleMarker
+                <MarkerCluster
                     key={arbre.y_lambert72}
                     position={[arbre.y_phi, arbre.x_lambda]}
                     name={arbre.nom_complet}
