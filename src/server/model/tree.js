@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {ObjectID} = require("mongodb");
+const {ObjectId} = require("mongodb");
 
 const treeSchema = new mongoose.Schema(
     {
@@ -9,11 +9,11 @@ const treeSchema = new mongoose.Schema(
                 lon: {type: Number},
             },
         ],
-        owner: {type: ObjectID, default: null},
+        owner: {type: ObjectId, ref: "User", default: null},
         comments: [
             {
                 comment: {type: String},
-                user: {type: ObjectID},
+                user: {type: ObjectId, ref: "User"},
                 postDate: {type: Date, default: Date.now},
             },
         ],
