@@ -14,11 +14,10 @@ import Tree from "./model/tree";
 
 const mongoose = require("mongoose");
 const routesUsers = require("./routes/user-routes");
+const routesTrees = require("./routes/tree-routes");
 const bodyParser = require("body-parser");
 
 const {APP_PORT} = process.env;
-// const {MONGO_INITDB_ROOT_USERNAME} = process.env;
-// const {MONGO_INITDB_ROOT_PASSWORD} = process.env;
 
 const app = express();
 
@@ -32,8 +31,6 @@ app.get("/hello", (req, res) => {
 app.listen(APP_PORT, () =>
     console.log(`🚀 Server is listening on port ${APP_PORT}.`),
 );
-
-// console.log(`this is a test ${MONGO_INITDB_ROOT_USERNAME}`);
 
 mongoose
     .connect(`mongodb://mongo:27017/trees`, {
@@ -53,6 +50,7 @@ mongoose
 app.use(bodyParser.json());
 
 app.use("/api/user", routesUsers);
+app.use("/api/trees", routesTrees);
 
 //Used to modify the "tree-data" collection
 
