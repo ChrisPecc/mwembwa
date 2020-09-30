@@ -7,11 +7,10 @@ const Test = () => {
     const {register, handleSubmit} = useForm();
 
     const submitValues = data => {
-        console.log(data);
         axios
             .post("/api/user/signup", data)
-            .then(resp => console.log(`done ${resp}`))
-            .catch(error => console.log(`error ${error}`));
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error));
     };
 
     return (
