@@ -5,14 +5,14 @@ const saltRounds = 10;
 const leavesFunctions = require("../functions/leaves-functions");
 
 const saveData = async (req, res, hash, leaves) => {
-    const userExists = await User.exists({username: req.body.username})
-        .then(resp => resp)
-        .catch(error => error);
+    const userExists = await User.exists({username: req.body.username});
+    // .then(resp => resp)
+    // .catch(error => error);
     console.log(userExists);
 
-    const emailExists = await User.exists({email: req.body.email})
-        .then(resp => resp)
-        .catch(error => error);
+    const emailExists = await User.exists({email: req.body.email});
+    // .then(resp => resp)
+    // .catch(error => error);
     console.log(emailExists);
 
     if (userExists) {
@@ -36,19 +36,18 @@ const saveData = async (req, res, hash, leaves) => {
         .then(() => res.status(201).json({message: "new user enregistré!"}))
         .catch(error => res.status(500).json({message: error}));
 
-    return "fuckU";
+    return "it should never get there but I can't commit without it";
 };
 
 const signUp = async (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, saltRounds);
     console.log(hash);
-    const leaves = await leavesFunctions
-        .leavesAtStart()
-        .then(resp => {
-            console.log(`shit${resp}`);
-            return resp;
-        })
-        .catch(error => error);
+    const leaves = await leavesFunctions.leavesAtStart();
+    // .then(resp => {
+    //     console.log(resp);
+    //     return resp;
+    // })
+    // .catch(error => error);
 
     saveData(req, res, hash, leaves);
 };
