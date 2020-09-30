@@ -43,12 +43,6 @@ const signUp = async (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, saltRounds);
     console.log(hash);
     const leaves = await leavesFunctions.leavesAtStart();
-    // .then(resp => {
-    //     console.log(resp);
-    //     return resp;
-    // })
-    // .catch(error => error);
-
     saveData(req, res, hash, leaves);
 };
 
