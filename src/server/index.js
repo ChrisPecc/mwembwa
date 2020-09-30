@@ -54,12 +54,10 @@ app.use("/api/trees", routesTrees);
 
 //Used to modify the "tree-data" collection
 
-Tree.find({complete_name: "Platanus x acerifolia"})
-    .limit(20)
+Tree.findOne({_id: "5f64856c02495a3ea0b22439"})
+    .populate("comments.user")
     .then(resp => {
-        resp.forEach(res1 => {
-            console.log(res1.geoloc);
-        });
+        console.log(resp);
     });
 
 // Tree.update({}, {$unset: {name: 1}}, {multi: true})
@@ -70,7 +68,7 @@ Tree.find({complete_name: "Platanus x acerifolia"})
 //     console.log("Error: " + error)
 // })
 
-// Tree.update({}, {$rename: {circonf: "circumf"}}, {multi: true})
+// Tree.update({}, {$rename: {"comments.user": "comments.author"}}, false, true)
 // .then(resp => {
 //     console.log("Field added");
 // })

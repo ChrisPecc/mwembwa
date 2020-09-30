@@ -1,9 +1,9 @@
 import Tree from "../model/tree";
 import User from "../model/users";
-// const mongoose = require("mongoose");
 
 const displayAllTrees = (req, res) => {
     Tree.find()
+        .populate("comments.user")
         .then(resp => res.status(200).json({message: resp}))
         .catch(error => res.status(500).json({message: error}));
 };
