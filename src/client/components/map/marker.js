@@ -4,7 +4,7 @@ import L from "leaflet";
 import iconArbre from "./imgmarker/marker.png";
 import SinglePopup from "./popup";
 
-const SingleMarker = ({key, position, name}) => {
+const SingleMarker = ({key, position, name, circonf}) => {
     const icon = L.icon({
         iconUrl: iconArbre,
         iconAnchor: [10, 0],
@@ -13,7 +13,7 @@ const SingleMarker = ({key, position, name}) => {
     });
     return (
         <Marker key={key} icon={icon} position={position}>
-            <SinglePopup name={name} />
+            <SinglePopup name={name} circonf={circonf} />
         </Marker>
     );
 };
