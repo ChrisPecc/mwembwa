@@ -1,6 +1,5 @@
 import Tree from "../model/tree";
 import User from "../model/users";
-import {ObjectId} from "mongodb";
 
 // const mongoose = require("mongoose");
 
@@ -69,7 +68,7 @@ const buyOneTree = async (req, res) => {
             .json({message: "This tree is locked, it can't be bought!"});
     }
 
-    if (targetTree.owner === ObjectId(req.body.user_id)) {
+    if (targetTree.owner.toString() === req.body.user_id.toString()) {
         return res
             .status(409)
             .json({message: "This Tree is already yours, smartass!"});
