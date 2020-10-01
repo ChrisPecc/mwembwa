@@ -8,8 +8,10 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
-import MainMap from "./components/map/map-view";
+// import {BrowserRouter, Route} from "react-router-dom";
+import GamePage from "./components/game-page/game-page";
+
 // eslint-disable-next-line no-unused-vars
 import css from "./main.css";
 
-ReactDOM.render(<MainMap />, document.querySelector("#app"));
+ReactDOM.render(<GamePage />, document.querySelector("#app"));

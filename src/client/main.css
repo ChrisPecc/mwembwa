@@ -1,8 +1,12 @@
 .leaflet-container {
-    width: 100%;
+    width: 90%;
     height: 100vh;
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     right: 0;
     z-index: 0;
+    align-content: center;
+}
+button{
+    z-index: 1000;
 }
