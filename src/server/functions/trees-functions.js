@@ -1,5 +1,8 @@
 import Tree from "../model/tree";
 import User from "../model/users";
+import {ObjectId} from "mongodb";
+
+// const mongoose = require("mongoose");
 
 const displayAllTrees = (req, res) => {
     Tree.find()
@@ -66,7 +69,7 @@ const buyOneTree = async (req, res) => {
             .json({message: "This tree is locked, it can't be bought!"});
     }
 
-    if (targetTree.owner === req.body.user_id) {
+    if (targetTree.owner === ObjectId(req.body.user_id)) {
         return res
             .status(409)
             .json({message: "This Tree is already yours, smartass!"});
@@ -83,7 +86,7 @@ const buyOneTree = async (req, res) => {
     if (targetUser.leaves_count < treeValue) {
         return res
             .status(403)
-            .json({message: "You don't have enought leaves to buy that tree"});
+            .json({message: "You don't have enough leaves to buy that tree"});
     }
 
     User.updateOne(
