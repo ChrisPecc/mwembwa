@@ -17,18 +17,18 @@ const MainMap = () => {
                     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 }
             />
-            {arbres.map(arbre => (
-                // eslint-disable-next-line react/jsx-key
-                <MarkerClusterGroup disableClusteringAtZoom={18}>
+            <MarkerClusterGroup disableClusteringAtZoom={18}>
+                {arbres.map(arbre => (
+                    // eslint-disable-next-line react/jsx-key
                     <Marker
                         key={arbre.y_lambert72}
                         position={[arbre.y_phi, arbre.x_lambda]}
                         name={arbre.nom_complet}
                         circonf={arbre.circonf}
                     />
-                </MarkerClusterGroup>
-            ))}
-            ;
+                ))}
+                ;
+            </MarkerClusterGroup>
         </Map>
     );
 };
