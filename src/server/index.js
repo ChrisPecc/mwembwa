@@ -10,7 +10,7 @@ import express from "express";
 import path from "path";
 // import { doesNotMatch } from "assert";
 
-import Tree from "./model/tree";
+// import Tree from "./model/tree";
 
 const mongoose = require("mongoose");
 const routesUsers = require("./routes/user-routes");
@@ -52,21 +52,108 @@ app.use(bodyParser.json());
 app.use("/api/user", routesUsers);
 app.use("/api/trees", routesTrees);
 
-//Used to modify the "tree-data" collection
+// DATA TREE COLLECTION MODIFIERS
 
-Tree.findOne({_id: "5f64856c02495a3ea0b22439"})
-    .populate("comments.user")
-    .then(resp => {
-        console.log(resp);
-    });
+// Tree.findOne({_id: "5f64856c02495a3ea0b22439"})
+//     .populate("comments.user")
+//     .then(resp => {
+//         console.log(resp);
+//     })
+//     .catch(error => {
+//         console.log(error)
+//     })
 
-// Tree.update({}, {$unset: {name: 1}}, {multi: true})
+// Tree.update({}, {$unset: {geoloc: 1}}, {multi: true})
 // .then(resp => {
-//     console.log("Field deleted");
+//     console.log("field added");
 // })
 // .catch(error => {
 //     console.log("Error: " + error)
 // })
+// let count2 = 0;
+// let counttotal2 = 0;
+
+// Tree.find()
+//     .then(resp => resp.forEach(async resp1 => {
+//         if (!resp1.location ) {
+//             console.log("the one that is missing")
+//             count2 ++
+//             counttotal2 ++
+//         }
+//         else{
+//             counttotal2 ++
+//             console.log(resp1._id)
+//             console.log(resp1.location.coordinates)
+//             console.log(count2 +"/"+ counttotal2)
+//             await Tree.updateOne(
+//                 {_id: resp1._id},
+//                 {
+//                     $set : {
+//                         lat : resp1.location.coordinates[0],
+//                         lon : resp1.location.coordinates[1]
+//                     }
+//                 }
+//             )
+
+//         }
+
+//     }))
+//     .catch(error => {
+//         console.log("Error: " + error)
+//     })
+
+// Tree.find()
+//     .then(resp => resp.forEach(async resp1 => {
+//         if (resp1.geoloc === null){
+//             console.log("this one is the faulty one")
+//         }
+//         else {
+//             console.log(resp1._id)
+//             console.log(resp1.lat)
+//             console.log(resp1.lon)
+//             await Tree.updateOne(
+//                 {_id: resp1._id},
+//                 {$set: {
+//                     location : {
+//                             type : "Point",
+//                             coordinates : [resp1.lon , resp1.lat]
+//                         }
+//                     }
+//                 },
+//             )
+//         }
+//     }))
+//     .catch(error => {
+//         console.log("Error: " + error)
+//     })
+
+// let count = 0;
+// let totalcount = 0;
+// Tree.find()
+//     .then(resp => resp.forEach(resp1 => {
+//         if (resp1.location === undefined) {
+//             console.log(resp1)
+//             console.log("this is the wrong one")
+//             totalcount = totalcount + 1
+//         }
+//         else {
+//             if (resp1.lat === resp1.location.coordinates[0]){
+//                 count ++
+//                 totalcount = totalcount + 1
+//             }
+//             else {
+//                 if (resp1.lon === resp1.location.coordinates[1]){
+//                     count ++
+//                     totalcount = totalcount + 1
+//                 }
+//                 else {
+//                     totalcount = totalcount + 1
+//                 }
+//             }
+//             console.log(count +"/"+ totalcount)
+//         }
+//     }
+//     ))
 
 // Tree.update({}, {$rename: {"comments.user": "comments.author"}}, false, true)
 // .then(resp => {

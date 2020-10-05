@@ -53,14 +53,20 @@ const addComment = async (req, res) => {
 
 const buyOneTree = async (req, res) => {
     const targetTree = await Tree.findOne({_id: req.params.id});
-    console.log(targetTree);
+    // console.log(targetTree);
+    // the one who buy
     const targetUser = await User.findOne({_id: req.body.user_id});
-    console.log(targetUser);
+    // console.log(targetUser);
     const basicTreeValue = Math.ceil(
         (targetTree.height * targetTree.circumf) / Math.PI,
     );
     console.log(basicTreeValue);
-    let treeValue = 0;
+    let treeValue;
+    let targetPlayerTreeValues = 0;
+    let targetPlayerTreeCount = 0;
+    let totalTreeCount = 0;
+    let otherPlayersTreeValues = 0;
+    let playerTreeValues = 0;
 
     if (targetTree.is_locked === true) {
         return res
@@ -68,19 +74,80 @@ const buyOneTree = async (req, res) => {
             .json({message: "This tree is locked, it can't be bought!"});
     }
 
-    if (targetTree.owner.toString() === req.body.user_id.toString()) {
-        return res
-            .status(409)
-            .json({message: "This Tree is already yours, smartass!"});
-    } else if (targetTree.owner === null) {
+    if (targetTree.owner === null) {
         console.log("free tree case");
         treeValue = basicTreeValue;
         console.log(treeValue);
+    } else if (targetTree.owner.toString() === req.body.user_id.toString()) {
+        return res
+            .status(409)
+            .json({message: "This Tree is already yours, smartass!"});
     } else {
         console.log("owned by other case");
-        treeValue = basicTreeValue * 2;
-        console.log(treeValue);
+        console.log(targetTree.location.coordinates);
+        treeValue = await Tree.find({
+            location: {
+                $near: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: targetTree.location.coordinates,
+                    },
+                    $maxDistance: 100,
+                },
+            },
+        })
+            .then(resp => {
+                resp.forEach(resp1 => {
+                    console.log(`owner ${resp1.owner}`);
+                    console.log(`target user ${req.body.user_id}`);
+                    if (resp1.owner === null) {
+                        totalTreeCount++;
+                    } else if (
+                        resp1._id.toString() === targetTree._id.toString()
+                    ) {
+                        targetPlayerTreeCount++;
+                    } else if (
+                        resp1.owner.toString() === targetTree.owner.toString()
+                    ) {
+                        targetPlayerTreeValues =
+                            targetPlayerTreeValues +
+                            Math.ceil((resp1.height * resp1.circumf) / Math.PI);
+                        targetPlayerTreeCount = targetPlayerTreeCount + 1;
+                        totalTreeCount++;
+                    } else if (
+                        resp1.owner.toString() === req.body.user_id.toString
+                    ) {
+                        playerTreeValues =
+                            playerTreeValues +
+                            Math.ceil((resp1.height * resp1.circumf) / Math.PI);
+                        totalTreeCount++;
+                    } else {
+                        // console.log(resp1)
+                        otherPlayersTreeValues =
+                            otherPlayersTreeValues +
+                            Math.ceil((resp1.height * resp1.circumf) / Math.PI);
+                        totalTreeCount++;
+                    }
+                });
+                console.log(totalTreeCount);
+                console.log(`tptv ${targetPlayerTreeValues}`);
+                console.log(`tptc ${targetPlayerTreeCount}`);
+                console.log(`ptv ${playerTreeValues}`);
+                console.log(`optv ${otherPlayersTreeValues}`);
+                treeValue =
+                    basicTreeValue +
+                    (targetPlayerTreeValues * totalTreeCount) /
+                        targetPlayerTreeCount +
+                    otherPlayersTreeValues -
+                    playerTreeValues;
+                console.log(`final ${treeValue}`);
+                return treeValue;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
+    console.log(treeValue);
 
     if (targetUser.leaves_count < treeValue) {
         return res

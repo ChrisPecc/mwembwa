@@ -5,12 +5,13 @@ const {ObjectId} = require("mongodb");
 
 const treeSchema = new mongoose.Schema(
     {
-        geoloc: [
-            {
-                lat: {type: Number},
-                lon: {type: Number},
-            },
-        ],
+        lat: {type: Number},
+        lon: {type: Number},
+        location: {
+            type: {type: String, default: "Point"},
+            // [lon, lat] so we can use $near : $geometry
+            coordinates: [{type: Number}, {type: Number}],
+        },
         owner: {type: ObjectId, ref: "User", default: null},
         comments: [
             {
@@ -27,5 +28,6 @@ const treeSchema = new mongoose.Schema(
     },
     {collection: "trees-data"},
 );
+treeSchema.index({location: "2dsphere"});
 
 module.exports = mongoose.model("Tree", treeSchema);
