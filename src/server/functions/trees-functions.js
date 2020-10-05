@@ -23,7 +23,7 @@ const addComment = async (req, res) => {
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
     const commentingUser = await User.findOne({_id: req.body.user_id});
-    // console.log(buyingUser);
+    // console.log(commentingUser);
     if (!targetTree) {
         return res.status(404).json({message: "This tree does not exist"});
     }
@@ -105,6 +105,13 @@ const buyOneTree = async (req, res) => {
     const randomGender = gender[randomGenderKey];
     let randomName;
     let treeName;
+
+    if (!targetTree) {
+        return res.status(404).json({message: "This tree does not exist"});
+    }
+    if (!buyingUser) {
+        return res.status(404).json({message: "This user does not exist"});
+    }
 
     if (randomRace === "human") {
         randomName = nameByRace(randomRace, {

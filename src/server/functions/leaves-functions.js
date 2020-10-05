@@ -6,23 +6,24 @@ const leavesAtStart = async () => {
             let totalLeaves = 0;
             resp.forEach(res1 => {
                 totalLeaves = totalLeaves + res1.leaves_count;
-                console.log(totalLeaves);
+                // console.log(totalLeaves);
             });
             return totalLeaves;
         })
-        .catch(error => {
-            console.log(error);
-            return error;
-        });
-    console.log(totalUsersLeaves);
+        .catch(
+            error =>
+                // console.log(error);
+                error,
+        );
+    // console.log(totalUsersLeaves);
 
     const playersCount = await User.countDocuments()
         .then(resp => resp)
         .catch(error => error);
-    console.log(playersCount);
+    // console.log(playersCount);
 
     const startingLeaves = Math.ceil(totalUsersLeaves / playersCount);
-    console.log(startingLeaves);
+    // console.log(startingLeaves);
 
     return startingLeaves;
 };

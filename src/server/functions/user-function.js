@@ -1,16 +1,49 @@
 import User from "../model/users";
+import Tree from "../model/tree";
 
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const leavesFunctions = require("../functions/leaves-functions");
 
+const startingFreeTrees = async (req, res) => {
+    const userJustCreated = await User.findOne({
+        username: req.body.username,
+        email: req.body.email,
+    });
+
+    if (!userJustCreated) {
+        return res.status(404).json({message: "This user "});
+    }
+    console.log(userJustCreated);
+
+    Tree.find({owner: null})
+        .then(resp => {
+            for (let i = 0; i < 3; i++) {
+                const randomArrayKey = Math.floor(Math.random() * resp.length);
+                console.log(randomArrayKey);
+                Tree.updateOne(
+                    {_id: resp[randomArrayKey]._id},
+                    {
+                        owner: userJustCreated._id,
+                    },
+                )
+                    .then(() =>
+                        res.status(200).json({message: "Tree allocated"}),
+                    )
+                    .catch(error => res.status(500).json({message: error}));
+            }
+        })
+        .catch(error => res.status(500).json({message: error}));
+    return "done";
+};
+
 const saveData = async (req, res, hash, leaves) => {
     const userExists = await User.exists({username: req.body.username});
-    console.log(userExists);
+    // console.log(userExists);
 
     const emailExists = await User.exists({email: req.body.email});
 
-    console.log(emailExists);
+    // console.log(emailExists);
 
     if (userExists) {
         return res
@@ -30,7 +63,10 @@ const saveData = async (req, res, hash, leaves) => {
 
     user1
         .save()
-        .then(() => res.status(201).json({message: "new user enregistré!"}))
+        .then(async () => {
+            await startingFreeTrees(req, res);
+            res.status(201).json({message: "new user enregistré!"});
+        })
         .catch(error => res.status(500).json({message: error}));
 
     return "Done";
@@ -38,7 +74,7 @@ const saveData = async (req, res, hash, leaves) => {
 
 const signUp = async (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, saltRounds);
-    console.log(hash);
+    // console.log(hash);
     const leaves = await leavesFunctions.leavesAtStart();
     saveData(req, res, hash, leaves);
 };
