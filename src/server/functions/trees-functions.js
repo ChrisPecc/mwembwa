@@ -58,16 +58,19 @@ const buyOneTree = async (req, res) => {
     const buyingUser = await User.findOne({_id: req.body.user_id});
     // console.log(buyingUser);
     let basicTreeValue;
-    function calcTreeValue(tree) {
+    const calcTreeValue = tree => {
         let value;
-        if (tree.height === null || tree.circumf === null) {
-            value = 500;
+        if (tree.height === null) {
+            value = 250;
+        } else if (tree.circumf === null) {
+            value = 250;
         } else {
             value = Math.ceil((tree.height * tree.circumf) / Math.PI);
         }
         return value;
-    }
+    };
     basicTreeValue = calcTreeValue(targetTree);
+    // console.log(basicTreeValue)
     let treeValue;
     let targetPlayerTreeValues = 0;
     let targetPlayerTreeCount = 0;
@@ -115,7 +118,6 @@ const buyOneTree = async (req, res) => {
     else {
         randomName = nameByRace(randomRace, {gender: randomGender});
     }
-    console.log(randomName);
 
     if (targetTree.is_locked === true) {
         return res
@@ -182,6 +184,7 @@ const buyOneTree = async (req, res) => {
                 // console.log(`tptc ${targetPlayerTreeCount}`);
                 // console.log(`ptv ${playerTreeValues}`);
                 // console.log(`optv ${otherPlayersTreeValues}`);
+                // console.log(basicTreeValue)
                 treeValue =
                     basicTreeValue +
                     (targetPlayerTreeValues * totalTreeCount) /
@@ -195,7 +198,6 @@ const buyOneTree = async (req, res) => {
                 console.log(error);
             });
     }
-    console.log(treeValue);
 
     if (buyingUser.leaves_count < treeValue) {
         return res
