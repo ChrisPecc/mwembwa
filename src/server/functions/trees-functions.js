@@ -1,6 +1,7 @@
 import Tree from "../model/tree";
 import User from "../model/users";
 
+import {nameByRace} from "fantasy-name-generator";
 // const mongoose = require("mongoose");
 
 const displayAllTrees = (req, res) => {
@@ -20,13 +21,13 @@ const displayOneTree = (req, res) => {
 
 const addComment = async (req, res) => {
     const targetTree = await Tree.findOne({_id: req.params.id});
-    console.log(targetTree);
-    const targetUser = await User.findOne({_id: req.body.user_id});
-    console.log(targetUser);
+    // console.log(targetTree);
+    const commentingUser = await User.findOne({_id: req.body.user_id});
+    // console.log(buyingUser);
     if (!targetTree) {
         return res.status(404).json({message: "This tree does not exist"});
     }
-    if (!targetUser) {
+    if (!commentingUser) {
         return res.status(404).json({message: "This user does not exist"});
     }
 
@@ -54,19 +55,60 @@ const addComment = async (req, res) => {
 const buyOneTree = async (req, res) => {
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
-    // the one who buy
-    const targetUser = await User.findOne({_id: req.body.user_id});
-    // console.log(targetUser);
+    const buyingUser = await User.findOne({_id: req.body.user_id});
+    // console.log(buyingUser);
     const basicTreeValue = Math.ceil(
         (targetTree.height * targetTree.circumf) / Math.PI,
     );
-    console.log(basicTreeValue);
+
     let treeValue;
     let targetPlayerTreeValues = 0;
     let targetPlayerTreeCount = 0;
     let totalTreeCount = 0;
     let otherPlayersTreeValues = 0;
     let playerTreeValues = 0;
+
+    const arrayRaces = [
+        "angel",
+        "cavePerson",
+        "darkelf",
+        "demon",
+        "dragon",
+        "drow",
+        "dwarf",
+        "elf",
+        "fairy",
+        "gnome",
+        "goblin",
+        "halfdemon",
+        "halfling",
+        "highelf",
+        "highfairy",
+        "human",
+        "ogre",
+        "orc",
+    ];
+    const randomArrayRacesKey = Math.floor(Math.random() * 18);
+    const randomRace = arrayRaces[randomArrayRacesKey];
+    const gender = ["male", "female"];
+    const randomGenderKey = Math.round(Math.random());
+    const randomGender = gender[randomGenderKey];
+    let randomName;
+    let treeName;
+
+    if (randomRace === "human") {
+        randomName = nameByRace(randomRace, {
+            gender: randomGender,
+            allowMultipleNames: true,
+        });
+    }
+    // else if (randomRace === "demon" || randomRace === "goblin" || randomRace === "ogre" || randomRace === "orc") {
+    //     randomName = nameByRace(randomRace)
+    // }
+    else {
+        randomName = nameByRace(randomRace, {gender: randomGender});
+    }
+    console.log(randomName);
 
     if (targetTree.is_locked === true) {
         return res
@@ -78,13 +120,15 @@ const buyOneTree = async (req, res) => {
         console.log("free tree case");
         treeValue = basicTreeValue;
         console.log(treeValue);
+        treeName = randomName;
     } else if (targetTree.owner.toString() === req.body.user_id.toString()) {
         return res
             .status(409)
             .json({message: "This Tree is already yours, smartass!"});
     } else {
         console.log("owned by other case");
-        console.log(targetTree.location.coordinates);
+        // console.log(targetTree.location.coordinates);
+        treeName = targetTree.nickname;
         treeValue = await Tree.find({
             location: {
                 $near: {
@@ -98,8 +142,8 @@ const buyOneTree = async (req, res) => {
         })
             .then(resp => {
                 resp.forEach(resp1 => {
-                    console.log(`owner ${resp1.owner}`);
-                    console.log(`target user ${req.body.user_id}`);
+                    // console.log(`owner ${resp1.owner}`);
+                    // console.log(`target user ${req.body.user_id}`);
                     if (resp1.owner === null) {
                         totalTreeCount++;
                     } else if (
@@ -129,11 +173,11 @@ const buyOneTree = async (req, res) => {
                         totalTreeCount++;
                     }
                 });
-                console.log(totalTreeCount);
-                console.log(`tptv ${targetPlayerTreeValues}`);
-                console.log(`tptc ${targetPlayerTreeCount}`);
-                console.log(`ptv ${playerTreeValues}`);
-                console.log(`optv ${otherPlayersTreeValues}`);
+                // console.log(totalTreeCount);
+                // console.log(`tptv ${targetPlayerTreeValues}`);
+                // console.log(`tptc ${targetPlayerTreeCount}`);
+                // console.log(`ptv ${playerTreeValues}`);
+                // console.log(`optv ${otherPlayersTreeValues}`);
                 treeValue =
                     basicTreeValue +
                     (targetPlayerTreeValues * totalTreeCount) /
@@ -149,7 +193,7 @@ const buyOneTree = async (req, res) => {
     }
     console.log(treeValue);
 
-    if (targetUser.leaves_count < treeValue) {
+    if (buyingUser.leaves_count < treeValue) {
         return res
             .status(403)
             .json({message: "You don't have enough leaves to buy that tree"});
@@ -157,10 +201,16 @@ const buyOneTree = async (req, res) => {
 
     User.updateOne(
         {_id: req.body.user_id},
-        {leaves_count: targetUser.leaves_count - treeValue},
+        {leaves_count: buyingUser.leaves_count - treeValue},
     )
         .then(() => {
-            Tree.updateOne({_id: req.params.id}, {owner: req.body.user_id})
+            Tree.updateOne(
+                {_id: req.params.id},
+                {
+                    owner: req.body.user_id,
+                    nickname: treeName,
+                },
+            )
                 .then(() => res.status(200).json({message: "Tree bought"}))
                 .catch(error => res.status(500).json({message: error}));
         })
