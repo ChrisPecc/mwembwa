@@ -20,7 +20,7 @@ const startingFreeTrees = async (req, res) => {
         .then(resp => {
             for (let i = 0; i < 3; i++) {
                 const randomArrayKey = Math.floor(Math.random() * resp.length);
-                console.log(randomArrayKey);
+                console.log(resp[randomArrayKey]);
                 Tree.updateOne(
                     {_id: resp[randomArrayKey]._id},
                     {

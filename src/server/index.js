@@ -10,7 +10,7 @@ import express from "express";
 import path from "path";
 // import { doesNotMatch } from "assert";
 
-// import Tree from "./model/tree";
+import Tree from "./model/tree";
 
 const mongoose = require("mongoose");
 const routesUsers = require("./routes/user-routes");
@@ -54,14 +54,14 @@ app.use("/api/trees", routesTrees);
 
 // DATA TREE COLLECTION MODIFIERS
 
-// Tree.findOne({_id: "5f64856c02495a3ea0b22439"})
-//     .populate("comments.user")
-//     .then(resp => {
-//         console.log(resp);
-//     })
-//     .catch(error => {
-//         console.log(error)
-//     })
+Tree.findOne({_id: "5f64857002495a3ea0b25d1b"})
+    .populate("comments.user")
+    .then(resp => {
+        console.log(resp);
+    })
+    .catch(error => {
+        console.log(error);
+    });
 
 // Tree.update({}, {$unset: {geoloc: 1}}, {multi: true})
 // .then(resp => {
