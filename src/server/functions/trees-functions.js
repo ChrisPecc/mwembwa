@@ -57,10 +57,17 @@ const buyOneTree = async (req, res) => {
     // console.log(targetTree);
     const buyingUser = await User.findOne({_id: req.body.user_id});
     // console.log(buyingUser);
-    const basicTreeValue = Math.ceil(
-        (targetTree.height * targetTree.circumf) / Math.PI,
-    );
-
+    let basicTreeValue;
+    function calcTreeValue(tree) {
+        let value;
+        if (tree.height === null || tree.circumf === null) {
+            value = 500;
+        } else {
+            value = Math.ceil((tree.height * tree.circumf) / Math.PI);
+        }
+        return value;
+    }
+    basicTreeValue = calcTreeValue(targetTree);
     let treeValue;
     let targetPlayerTreeValues = 0;
     let targetPlayerTreeCount = 0;
@@ -154,22 +161,19 @@ const buyOneTree = async (req, res) => {
                         resp1.owner.toString() === targetTree.owner.toString()
                     ) {
                         targetPlayerTreeValues =
-                            targetPlayerTreeValues +
-                            Math.ceil((resp1.height * resp1.circumf) / Math.PI);
+                            targetPlayerTreeValues + calcTreeValue(resp1);
                         targetPlayerTreeCount = targetPlayerTreeCount + 1;
                         totalTreeCount++;
                     } else if (
                         resp1.owner.toString() === req.body.user_id.toString
                     ) {
                         playerTreeValues =
-                            playerTreeValues +
-                            Math.ceil((resp1.height * resp1.circumf) / Math.PI);
+                            playerTreeValues + calcTreeValue(resp1);
                         totalTreeCount++;
                     } else {
                         // console.log(resp1)
                         otherPlayersTreeValues =
-                            otherPlayersTreeValues +
-                            Math.ceil((resp1.height * resp1.circumf) / Math.PI);
+                            otherPlayersTreeValues + calcTreeValue(resp1);
                         totalTreeCount++;
                     }
                 });
