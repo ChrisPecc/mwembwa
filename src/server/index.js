@@ -54,11 +54,9 @@ app.use("/api/trees", routesTrees);
 
 // DATA TREE COLLECTION MODIFIERS
 
-Tree.findOne({_id: "5f64857002495a3ea0b25d1b"})
-    .populate("comments.user")
-    .then(resp => {
-        console.log(resp);
-    })
+Tree.find({owner: "5f7c26b274e4c0010287dffe"})
+    // .populate("comments.user")
+    .then(resp => console.log(resp))
     .catch(error => {
         console.log(error);
     });

@@ -7,5 +7,6 @@ treerouter.get("/one/:id", treesFunctions.displayOneTree);
 
 treerouter.post("/comment/:id", treesFunctions.addComment);
 treerouter.post("/buy/:id", treesFunctions.buyOneTree);
+treerouter.post("/lock/:id", treesFunctions.lockOneTree);
 
 module.exports = treerouter;

@@ -1,7 +1,7 @@
 import Tree from "../model/tree";
 import User from "../model/users";
+import nameFunctions from "./random-name";
 
-import {nameByRace} from "fantasy-name-generator";
 // const mongoose = require("mongoose");
 
 const displayAllTrees = (req, res) => {
@@ -52,23 +52,24 @@ const addComment = async (req, res) => {
     return "done";
 };
 
+const calcTreeValue = tree => {
+    let value;
+    if (tree.height === null) {
+        value = 250;
+    } else if (tree.circumf === null) {
+        value = 250;
+    } else {
+        value = Math.ceil((tree.height * tree.circumf) / Math.PI);
+    }
+    return value;
+};
+
 const buyOneTree = async (req, res) => {
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
     const buyingUser = await User.findOne({_id: req.body.user_id});
     // console.log(buyingUser);
     let basicTreeValue;
-    const calcTreeValue = tree => {
-        let value;
-        if (tree.height === null) {
-            value = 250;
-        } else if (tree.circumf === null) {
-            value = 250;
-        } else {
-            value = Math.ceil((tree.height * tree.circumf) / Math.PI);
-        }
-        return value;
-    };
     basicTreeValue = calcTreeValue(targetTree);
     // console.log(basicTreeValue)
     let treeValue;
@@ -78,32 +79,6 @@ const buyOneTree = async (req, res) => {
     let otherPlayersTreeValues = 0;
     let playerTreeValues = 0;
 
-    const arrayRaces = [
-        "angel",
-        "cavePerson",
-        "darkelf",
-        "demon",
-        "dragon",
-        "drow",
-        "dwarf",
-        "elf",
-        "fairy",
-        "gnome",
-        "goblin",
-        "halfdemon",
-        "halfling",
-        "highelf",
-        "highfairy",
-        "human",
-        "ogre",
-        "orc",
-    ];
-    const randomArrayRacesKey = Math.floor(Math.random() * 18);
-    const randomRace = arrayRaces[randomArrayRacesKey];
-    const gender = ["male", "female"];
-    const randomGenderKey = Math.round(Math.random());
-    const randomGender = gender[randomGenderKey];
-    let randomName;
     let treeName;
 
     if (!targetTree) {
@@ -111,19 +86,6 @@ const buyOneTree = async (req, res) => {
     }
     if (!buyingUser) {
         return res.status(404).json({message: "This user does not exist"});
-    }
-
-    if (randomRace === "human") {
-        randomName = nameByRace(randomRace, {
-            gender: randomGender,
-            allowMultipleNames: true,
-        });
-    }
-    // else if (randomRace === "demon" || randomRace === "goblin" || randomRace === "ogre" || randomRace === "orc") {
-    //     randomName = nameByRace(randomRace)
-    // }
-    else {
-        randomName = nameByRace(randomRace, {gender: randomGender});
     }
 
     if (targetTree.is_locked === true) {
@@ -136,7 +98,7 @@ const buyOneTree = async (req, res) => {
         console.log("free tree case");
         treeValue = basicTreeValue;
         console.log(treeValue);
-        treeName = randomName;
+        treeName = nameFunctions.giveRandomName();
     } else if (targetTree.owner.toString() === req.body.user_id.toString()) {
         return res
             .status(409)
@@ -232,4 +194,107 @@ const buyOneTree = async (req, res) => {
     return "done";
 };
 
-module.exports = {displayAllTrees, addComment, displayOneTree, buyOneTree};
+const lockOneTree = async (req, res) => {
+    const targetTree = await Tree.findOne({_id: req.params.id});
+    // console.log(targetTree);
+    const requestUser = await User.findOne({_id: req.body.user_id});
+
+    const targetTreeValue = calcTreeValue(targetTree);
+    let sumAreaTreeValues = 0;
+    const arrayPlayers = [];
+    let requestUserTreeValues = 0;
+    let treeLockingCost;
+
+    if (!targetTree) {
+        return res.status(404).json({message: "This tree does not exist"});
+    }
+    if (!requestUser) {
+        return res.status(404).json({message: "This user does not exist"});
+    }
+
+    if (requestUser._id.toString() !== targetTree.owner.toString()) {
+        return res.status(409).json({
+            message: "This tree is not yours, you can only lock your tree",
+        });
+    }
+
+    treeLockingCost = await Tree.find({
+        location: {
+            $near: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: targetTree.location.coordinates,
+                },
+                $maxDistance: 100,
+            },
+        },
+    })
+        .then(resp => {
+            console.log(resp.length);
+            resp.forEach(resp1 => {
+                if (resp1.owner === null) {
+                    sumAreaTreeValues =
+                        sumAreaTreeValues + calcTreeValue(resp1);
+                } else if (
+                    resp1.owner.toString() === requestUser._id.toString()
+                ) {
+                    sumAreaTreeValues =
+                        sumAreaTreeValues + calcTreeValue(resp1);
+                    requestUserTreeValues =
+                        requestUserTreeValues + calcTreeValue(resp1);
+                    if (!arrayPlayers.includes(resp1.owner.toString())) {
+                        arrayPlayers.push(resp1.owner.toString());
+                    }
+                } else {
+                    sumAreaTreeValues =
+                        sumAreaTreeValues + calcTreeValue(resp1);
+                    if (!arrayPlayers.includes(resp1.owner.toString())) {
+                        arrayPlayers.push(resp1.owner.toString());
+                    }
+                }
+            });
+            console.log(`array Players ${arrayPlayers}`);
+            const lockingCost = Math.floor(
+                targetTreeValue * 10 +
+                    sumAreaTreeValues * arrayPlayers.length -
+                    requestUserTreeValues / arrayPlayers.length,
+            );
+            return lockingCost;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+    console.log(treeLockingCost);
+    if (requestUser.leaves_count < treeLockingCost) {
+        return res
+            .status(403)
+            .json({message: "You don't have enough leaves to lock that tree"});
+    }
+
+    User.updateOne(
+        {_id: requestUser._id},
+        {leaves_count: requestUser.leaves_count - treeLockingCost},
+    )
+        .then(() => {
+            Tree.updateOne(
+                {_id: req.params.id},
+                {
+                    is_locked: true,
+                },
+            )
+                .then(() => res.status(200).json({message: "Tree locked"}))
+                .catch(error => res.status(500).json({message: error}));
+        })
+        .catch(error => res.status(500).json({message: error}));
+
+    return "done";
+};
+
+module.exports = {
+    displayAllTrees,
+    addComment,
+    displayOneTree,
+    buyOneTree,
+    lockOneTree,
+};
