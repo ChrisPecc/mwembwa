@@ -1,6 +1,7 @@
 import Tree from "../model/tree";
 import User from "../model/users";
 import nameFunctions from "./random-name";
+import logFunctions from "./log-functions";
 
 // const mongoose = require("mongoose");
 
@@ -45,9 +46,15 @@ const addComment = async (req, res) => {
         },
         {new: true},
     )
-        .then(resp =>
-            res.status(201).json({message: `comment created ${resp}`}),
-        )
+        .then(resp => {
+            logFunctions.writeIntoLog(
+                commentingUser._id,
+                "has commented on",
+                targetTree._id,
+                res,
+            );
+            res.status(201).json({message: `comment created ${resp}`});
+        })
         .catch(error => res.status(500).json({message: error}));
     return "done";
 };
@@ -186,7 +193,15 @@ const buyOneTree = async (req, res) => {
                     nickname: treeName,
                 },
             )
-                .then(() => res.status(200).json({message: "Tree bought"}))
+                .then(() => {
+                    logFunctions.writeIntoLog(
+                        buyingUser._id,
+                        "has bought",
+                        targetTree._id,
+                        res,
+                    );
+                    res.status(200).json({message: "Tree bought"});
+                })
                 .catch(error => res.status(500).json({message: error}));
         })
         .catch(error => res.status(500).json({message: error}));
@@ -283,7 +298,15 @@ const lockOneTree = async (req, res) => {
                     is_locked: true,
                 },
             )
-                .then(() => res.status(200).json({message: "Tree locked"}))
+                .then(() => {
+                    logFunctions.writeIntoLog(
+                        requestUser._id,
+                        "has locked",
+                        targetTree._id,
+                        res,
+                    );
+                    res.status(200).json({message: "Tree locked"});
+                })
                 .catch(error => res.status(500).json({message: error}));
         })
         .catch(error => res.status(500).json({message: error}));

@@ -10,11 +10,12 @@ import express from "express";
 import path from "path";
 // import { doesNotMatch } from "assert";
 
-import Tree from "./model/tree";
+// import Tree from "./model/tree";
 
 const mongoose = require("mongoose");
 const routesUsers = require("./routes/user-routes");
 const routesTrees = require("./routes/tree-routes");
+const routesLogs = require("./routes/log-routes");
 const bodyParser = require("body-parser");
 
 const {APP_PORT} = process.env;
@@ -51,15 +52,16 @@ app.use(bodyParser.json());
 
 app.use("/api/user", routesUsers);
 app.use("/api/trees", routesTrees);
+app.use("/api/logs", routesLogs);
 
 // DATA TREE COLLECTION MODIFIERS
 
-Tree.find({owner: "5f7c26b274e4c0010287dffe"})
-    // .populate("comments.user")
-    .then(resp => console.log(resp))
-    .catch(error => {
-        console.log(error);
-    });
+// Tree.find({owner: "5f7c26b274e4c0010287dffe"})
+//     // .populate("comments.user")
+//     .then(resp => console.log(resp))
+//     .catch(error => {
+//         console.log(error);
+//     });
 
 // Tree.update({}, {$unset: {geoloc: 1}}, {multi: true})
 // .then(resp => {

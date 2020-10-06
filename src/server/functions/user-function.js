@@ -2,6 +2,7 @@ import User from "../model/users";
 import Tree from "../model/tree";
 
 import nameFunctions from "./random-name";
+import logFunctions from "./log-functions";
 
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
@@ -35,6 +36,12 @@ const startingFreeTrees = async (req, res) => {
                 //     res.json({message: "Tree allocated"}),
                 // )
                 // .catch(error => res.status(500).json({message: error}));
+                logFunctions.writeIntoLog(
+                    userJustCreated._id,
+                    "has recieved",
+                    resp[randomArrayKey]._id,
+                    res,
+                );
             }
         })
         .catch(error => res.status(500).json({message: error}));
@@ -69,6 +76,16 @@ const saveData = async (req, res, hash, leaves) => {
         .save()
         .then(async () => {
             await startingFreeTrees(req, res);
+            const playerJustCreated = await Tree.find({
+                email: req.body.email,
+                username: req.body.username,
+            });
+            logFunctions.writeIntoLog(
+                playerJustCreated._id,
+                "has joined the game",
+                null,
+                res,
+            );
             res.status(201).json({message: "new user enregistré!"});
         })
         .catch(error => res.status(500).json({message: error}));
