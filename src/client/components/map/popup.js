@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-max-depth */
 import React, {useState} from "react";
 import {Popup} from "react-leaflet";
 import IMG from "./imgmarker/marker.png";
@@ -9,6 +8,7 @@ import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 
 const SinglePopup = ({name, circonf}) => {
     const [stateOnglets, setStateOnglets] = useState(1);
+    const [isShown, setIsShown] = useState(false);
 
     const goInfo = () => {
         setStateOnglets(1);
@@ -20,7 +20,17 @@ const SinglePopup = ({name, circonf}) => {
 
     const openModal = () => {
         setStateOnglets(3);
+        setIsShown(false);
     };
+
+    const showHover = () => {
+        setIsShown(true);
+    };
+
+    const closeHover = () => {
+        setIsShown(false);
+    };
+
     return (
         <>
             <Popup>
@@ -57,7 +67,16 @@ const SinglePopup = ({name, circonf}) => {
                                             icon={faInfoCircle}
                                             className={"iconInfo"}
                                             onClick={openModal}
+                                            onMouseEnter={showHover}
+                                            onMouseLeave={closeHover}
                                         />
+                                        {isShown && (
+                                            <div className={"hover"}>
+                                                <p>
+                                                    Historique des propriétaires
+                                                </p>
+                                            </div>
+                                        )}
                                         <h2>{name}</h2>
                                         <a
                                             target={"_blank"}
