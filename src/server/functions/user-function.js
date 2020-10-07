@@ -4,6 +4,7 @@ import Tree from "../model/tree";
 import nameFunctions from "./random-name";
 import logFunctions from "./log-functions";
 
+const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const leavesFunctions = require("../functions/leaves-functions");
@@ -119,7 +120,15 @@ const login = (req, res) => {
                     .json({message: "wrong email/password combination"});
             }
 
-            return res.status(200).json({message: resp});
+            return res.status(200).json({
+                user_id: resp._id,
+                username : resp.username,
+                token: jwt.sign(
+                    { user_id: resp._id},
+                    "D4CC737A277F6B29C32D302E385C238AD8B2E1CC0C368B9FAD7537F9D27DD106",
+                    {expiresIn: "24h"}
+                )
+            });
         })
         .catch(error => console.log(error));
 };
