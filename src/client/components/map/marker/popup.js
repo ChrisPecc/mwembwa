@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Popup} from "react-leaflet";
-import IMG from "./imgmarker/marker.png";
-import feuille from "./imgmarker/feuille.png";
-import "./css/popup.css";
+import IMG from "../imgmarker/marker.png";
+import feuille from "../imgmarker/feuille.png";
+import "../css/popup.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 
@@ -77,7 +77,7 @@ const SinglePopup = ({name, circonf}) => {
                                                 </p>
                                             </div>
                                         )}
-                                        <h2>{name}</h2>
+                                        <h5>{name}</h5>
                                         <a
                                             target={"_blank"}
                                             rel={"noreferrer"}
@@ -105,37 +105,37 @@ const SinglePopup = ({name, circonf}) => {
                                 <div className={"comment"}>
                                     <div className={"comments"}>
                                         <div className={"singleComment"}>
-                                            <h4>User</h4>
+                                            <h6>User</h6>
                                             <p>comment</p>
                                             <hr />
                                         </div>
                                         <div className={"singleComment"}>
-                                            <h4>User</h4>
+                                            <h6>User</h6>
                                             <p>comment</p>
                                             <hr />
                                         </div>
                                         <div className={"singleComment"}>
-                                            <h4>User</h4>
+                                            <h6>User</h6>
                                             <p>comment</p>
                                             <hr />
                                         </div>
                                         <div className={"singleComment"}>
-                                            <h4>User</h4>
+                                            <h6>User</h6>
                                             <p>comment</p>
                                             <hr />
                                         </div>
                                         <div className={"singleComment"}>
-                                            <h4>User</h4>
+                                            <h6>User</h6>
                                             <p>comment</p>
                                             <hr />
                                         </div>
                                         <div className={"singleComment"}>
-                                            <h4>User</h4>
+                                            <h6>User</h6>
                                             <p>comment</p>
                                             <hr />
                                         </div>
                                         <div className={"singleComment"}>
-                                            <h4>User</h4>
+                                            <h6>User</h6>
                                             <p>comment</p>
                                             <hr />
                                         </div>
@@ -153,7 +153,7 @@ const SinglePopup = ({name, circonf}) => {
                             </div>
                         ) : (
                             <div className={"propriétaires"}>
-                                <h3>Historique des propriétaires</h3>
+                                <h6>Historique des propriétaires</h6>
                                 <hr />
                                 <div className={"content"}>
                                     <div className={"userProprio"}>
