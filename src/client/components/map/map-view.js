@@ -1,24 +1,44 @@
 /* eslint-disable no-console */
-import React from "react";
+import React, {useState} from "react";
 import {Map, TileLayer} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import Marker from "./marker/marker";
-// import arbres from "./data/arbres.json";
 import axiostree from "./data/tree.json";
+import axios from "axios";
 import "./css/map-view.css";
 import ModalRegleJeu from "./modal-regle-jeu/regle-jeu";
 
 const MainMap = () => {
-    console.log(axiostree.basicTreeValue);
-    console.log(axiostree.message.is_lockede);
-    // const coordinateCenterMap = {lat: 50.65145, lng: 5.57739};
-    const positionActuel = e => {
-        const zoom = e.zoom;
-        const geoloc = e.center;
-        console.log(zoom);
-        console.log(geoloc[0]);
-        console.log(geoloc[1]);
+    // console.log(axiostree.basicTreeValue);
+    // console.log(axiostree.message.is_lockede);
+    let coordinateCenterMap = {lat: 50.65145, lng: 5.57739};
+
+    const [trees, setTrees] = useState([]);
+
+    const getTreesByCoordinateCenterMap = () => {
+        axios
+            .get("/api/tree/", {
+                params: {
+                    coordinateCenterMap,
+                },
+            })
+            .then(response => {
+                setTrees(response.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     };
+
+    const positionActuel = e => {
+        coordinateCenterMap = e.center;
+        getTreesByCoordinateCenterMap(coordinateCenterMap);
+    };
+
+    const wrapperSetTrees = treesUpdated => {
+        setTrees(treesUpdated);
+    };
+
     return (
         <>
             <Map
@@ -35,17 +55,20 @@ const MainMap = () => {
                         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     }
                 />
-                <MarkerClusterGroup disableClusteringAtZoom={18}>
-                    {/* {arbres.map(arbre => ( */}
-                    <Marker
-                        id={axiostree.message._id}
-                        position={[
-                            axiostree.message.location.coordinates[1],
-                            axiostree.message.location.coordinates[0],
-                        ]}
-                    />
-                    {/* ))}
-                ; */}
+                <MarkerClusterGroup
+                    disableClusteringAtZoom={18}
+                    trees={trees}
+                    wrapperSetTrees={wrapperSetTrees}>
+                    {trees.map(tree => (
+                        <Marker
+                            key={tree.message._id}
+                            position={[
+                                tree.message.location.coordinates[1],
+                                tree.message.location.coordinates[0],
+                            ]}
+                        />
+                    ))}
+                    ;
                 </MarkerClusterGroup>
                 <ModalRegleJeu />
             </Map>

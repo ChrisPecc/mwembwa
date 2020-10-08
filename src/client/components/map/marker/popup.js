@@ -3,6 +3,7 @@ import {Popup} from "react-leaflet";
 import IMG from "../imgmarker/marker.png";
 import feuille from "../imgmarker/feuille.png";
 import "../css/popup.css";
+import axiosTree from "../data/tree.json";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faInfoCircle,
@@ -130,41 +131,23 @@ const SinglePopup = ({name, price, ownerName, lock}) => {
                             <div className={"contentComment"}>
                                 <div className={"comment"}>
                                     <div className={"comments"}>
+                                        {/* {trees.map(treeComment => ( */}
                                         <div className={"singleComment"}>
-                                            <h6>User</h6>
-                                            <p>comment</p>
+                                            <h6>
+                                                {
+                                                    axiosTree.message.comments
+                                                        .user.username
+                                                }
+                                            </h6>
+                                            <p>
+                                                {
+                                                    axiosTree.message.comments
+                                                        .comment
+                                                }
+                                            </p>
                                             <hr />
                                         </div>
-                                        <div className={"singleComment"}>
-                                            <h6>User</h6>
-                                            <p>comment</p>
-                                            <hr />
-                                        </div>
-                                        <div className={"singleComment"}>
-                                            <h6>User</h6>
-                                            <p>comment</p>
-                                            <hr />
-                                        </div>
-                                        <div className={"singleComment"}>
-                                            <h6>User</h6>
-                                            <p>comment</p>
-                                            <hr />
-                                        </div>
-                                        <div className={"singleComment"}>
-                                            <h6>User</h6>
-                                            <p>comment</p>
-                                            <hr />
-                                        </div>
-                                        <div className={"singleComment"}>
-                                            <h6>User</h6>
-                                            <p>comment</p>
-                                            <hr />
-                                        </div>
-                                        <div className={"singleComment"}>
-                                            <h6>User</h6>
-                                            <p>comment</p>
-                                            <hr />
-                                        </div>
+                                        {/* ))} */}
                                     </div>
                                 </div>
                                 <div className={"submit"}>
