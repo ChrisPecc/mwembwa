@@ -3,8 +3,9 @@ import {Marker} from "react-leaflet";
 import L from "leaflet";
 // import iconArbre from "./imgmarker/marker.png";
 import SinglePopup from "./popup";
+import axiostree from "../data/tree.json";
 
-const SingleMarker = ({key, position, name, circonf}) => {
+const SingleMarker = ({id, position}) => {
     const iconSvg = `<?xml version="1.0" encoding="UTF-8"?>
         <svg enable-background="new 0 0 512.001 512.001" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
             <path d="m485.27 240.53c0-35.798-21.77-66.511-52.792-79.623 5.478-10.59 8.592-22.602 8.592-35.348 0-42.561-34.502-77.063-77.063-77.063-12.126 0-23.593 2.809-33.799 7.798-9.068-32.469-38.847-56.296-74.209-56.296s-65.14 23.827-74.209 56.296c-10.206-4.99-21.673-7.798-33.799-7.798-42.561 0-77.063 34.502-77.063 77.063 0 12.746 3.113 24.758 8.592 35.348-31.022 13.113-52.792 43.825-52.792 79.623 0 46.393 36.576 84.196 82.459 86.265 6.397 23.17 31.1 40.443 60.622 40.443 16.732 0 31.91-5.557 43.095-14.581 11.186 9.024 26.364 14.581 43.095 14.581s31.91-5.557 43.095-14.581c11.186 9.024 26.364 14.581 43.095 14.581 29.522 0 54.225-17.273 60.622-40.444 45.883-2.069 82.459-39.871 82.459-86.264z" fill="#8BBC55"/>
@@ -25,8 +26,13 @@ const SingleMarker = ({key, position, name, circonf}) => {
         iconSize: [50, 50],
     });
     return (
-        <Marker key={key} icon={icon} position={position}>
-            <SinglePopup name={name} circonf={circonf} />
+        <Marker id={id} icon={icon} position={position}>
+            <SinglePopup
+                name={axiostree.message.nickname}
+                price={axiostree.basicTreeValue}
+                ownerName={axiostree.message.owner.username}
+                lock={axiostree.message.is_locked}
+            />
         </Marker>
     );
 };

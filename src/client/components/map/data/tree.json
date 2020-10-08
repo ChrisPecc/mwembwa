@@ -1,0 +1,123 @@
+{
+    "message": {
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                5.5805,
+                50.651474
+            ]
+        },
+        "owner": {
+            "color": "#ffffff",
+            "_id": "5f743aac390d8e086f53375a",
+            "username": "Toshiro",
+            "email": "oyama.toshiro@arcadia.pir",
+            "password": "$2a$10$wwrtTJpiHem/sWJPhGnfNeiwUNzQE6cpyPW6Ak04/0vZijZ7z9zsi",
+            "leaves_count": 445761,
+            "inscription_date": "2020-09-30T07:58:36.126Z",
+            "__v": 0
+        },
+        "nickname": "bryan",
+        "is_locked": true,
+        "_id": "5f64856c02495a3ea0b22439",
+        "comments": [
+            {
+                "_id": "5f74951f521f030ca77a81e1",
+                "comment": "retest to see if I achieve to change user in comment",
+                "user": {
+                    "color": "#ffffff",
+                    "_id": "5f743aac390d8e086f53375a",
+                    "username": "Toshiro",
+                    "email": "oyama.toshiro@arcadia.pir",
+                    "password": "$2a$10$wwrtTJpiHem/sWJPhGnfNeiwUNzQE6cpyPW6Ak04/0vZijZ7z9zsi",
+                    "leaves_count": 445761,
+                    "inscription_date": "2020-09-30T07:58:36.126Z",
+                    "__v": 0
+                },
+                "postDate": "2020-09-30T14:24:31.370Z"
+            },
+            {
+                "_id": "5f7c69d8942d3e0300ab2174",
+                "comment": "ceci est un commentaire",
+                "user": {
+                    "color": "#FFFFFF",
+                    "_id": "5f7c68b3942d3e0300ab216f",
+                    "username": "Elisa",
+                    "email": "elisamaza@police.ny",
+                    "password": "$2a$10$p4lZcd5Dipburgl95R.Q3.Ej8t5h5OnXhWDwxkLQ2IJEbB9DHKCgi",
+                    "leaves_count": 19824,
+                    "inscription_date": "2020-10-06T12:53:07.668Z",
+                    "__v": 0
+                },
+                "postDate": "2020-10-06T12:58:00.686Z"
+            },
+            {
+                "_id": "5f7c783ce32d5f05631cba3c",
+                "comment": "another one on the same tree",
+                "user": {
+                    "color": "#FFFFFF",
+                    "_id": "5f7c68b3942d3e0300ab216f",
+                    "username": "Elisa",
+                    "email": "elisamaza@police.ny",
+                    "password": "$2a$10$p4lZcd5Dipburgl95R.Q3.Ej8t5h5OnXhWDwxkLQ2IJEbB9DHKCgi",
+                    "leaves_count": 19824,
+                    "inscription_date": "2020-10-06T12:53:07.668Z",
+                    "__v": 0
+                },
+                "postDate": "2020-10-06T13:59:24.151Z"
+            },
+            {
+                "_id": "5f7c78ba3b245f0571dc9846",
+                "comment": "another one",
+                "user": {
+                    "color": "#FFFFFF",
+                    "_id": "5f7c68b3942d3e0300ab216f",
+                    "username": "Elisa",
+                    "email": "elisamaza@police.ny",
+                    "password": "$2a$10$p4lZcd5Dipburgl95R.Q3.Ej8t5h5OnXhWDwxkLQ2IJEbB9DHKCgi",
+                    "leaves_count": 19824,
+                    "inscription_date": "2020-10-06T12:53:07.668Z",
+                    "__v": 0
+                },
+                "postDate": "2020-10-06T14:01:30.988Z"
+            },
+            {
+                "_id": "5f7dd0ba8ee16000c0abf10f",
+                "comment": "another test",
+                "user": {
+                    "color": "#FFFFFF",
+                    "_id": "5f7c68b3942d3e0300ab216f",
+                    "username": "Elisa",
+                    "email": "elisamaza@police.ny",
+                    "password": "$2a$10$p4lZcd5Dipburgl95R.Q3.Ej8t5h5OnXhWDwxkLQ2IJEbB9DHKCgi",
+                    "leaves_count": 19824,
+                    "inscription_date": "2020-10-06T12:53:07.668Z",
+                    "__v": 0
+                },
+                "postDate": "2020-10-07T14:29:14.207Z"
+            },
+            {
+                "_id": "5f7dd1c38ee16000c0abf111",
+                "comment": "that's weird, it didn't just a moment ago",
+                "user": {
+                    "color": "#FFFFFF",
+                    "_id": "5f7c68b3942d3e0300ab216f",
+                    "username": "Elisa",
+                    "email": "elisamaza@police.ny",
+                    "password": "$2a$10$p4lZcd5Dipburgl95R.Q3.Ej8t5h5OnXhWDwxkLQ2IJEbB9DHKCgi",
+                    "leaves_count": 19824,
+                    "inscription_date": "2020-10-06T12:53:07.668Z",
+                    "__v": 0
+                },
+                "postDate": "2020-10-07T14:33:39.309Z"
+            }
+        ],
+        "height": 17.3,
+        "complete_name": "Platanus x acerifolia",
+        "circumf": 136,
+        "lat": 50.651474,
+        "lon": 5.5805
+    },
+    "basicTreeValue": 749,
+    "treeValueOwnedByOthers": 3786
+}

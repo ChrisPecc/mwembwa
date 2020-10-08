@@ -4,11 +4,16 @@ import IMG from "../imgmarker/marker.png";
 import feuille from "../imgmarker/feuille.png";
 import "../css/popup.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import {
+    faInfoCircle,
+    faLockOpen,
+    faLock,
+} from "@fortawesome/free-solid-svg-icons";
 
-const SinglePopup = ({name, circonf}) => {
+const SinglePopup = ({name, price, ownerName, lock}) => {
     const [stateOnglets, setStateOnglets] = useState(1);
     const [isShown, setIsShown] = useState(false);
+    const [isLock, setIsLock] = useState(lock);
 
     const goInfo = () => {
         setStateOnglets(1);
@@ -30,6 +35,18 @@ const SinglePopup = ({name, circonf}) => {
     const closeHover = () => {
         setIsShown(false);
     };
+
+    const lockTree = () => {
+        setIsLock(!isLock);
+    };
+
+    let iconLock;
+
+    if (isLock === true) {
+        iconLock = faLock;
+    } else {
+        iconLock = faLockOpen;
+    }
 
     return (
         <>
@@ -61,6 +78,7 @@ const SinglePopup = ({name, circonf}) => {
                                             width={"70px"}
                                             height={"70px"}
                                         />
+                                        <p>Owner: {ownerName}</p>
                                     </div>
                                     <div className={"name"}>
                                         <FontAwesomeIcon
@@ -84,14 +102,22 @@ const SinglePopup = ({name, circonf}) => {
                                             href={`https://fr.wikipedia.org/wiki/${name}`}>
                                             wikipedia
                                         </a>
+                                        <FontAwesomeIcon
+                                            icon={iconLock}
+                                            className={"iconLock"}
+                                            onClick={lockTree}
+                                            size={"lg"}
+                                        />
                                     </div>
                                 </div>
                                 <div className={"button_prix"}>
                                     <button
-                                        className={"buy"}
+                                        className={`buy ${
+                                            isLock === true ? "lock" : " "
+                                        }`}
                                         // eslint-disable-next-line react/button-has-type
                                         type={"submit"}>
-                                        Buy for {circonf}
+                                        Buy for {price}
                                         <img
                                             src={feuille}
                                             width={"20px"}

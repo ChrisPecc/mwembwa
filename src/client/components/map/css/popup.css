@@ -111,6 +111,20 @@
     top: 15%;
     right: 15px;
 }
+.lock{
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: grey;
+    border: 1px solid grey;
+}
+.iconLock{
+    position: absolute;
+    bottom: 10%;
+    right: 0;
+}
+.fa-lock {
+    color: red !important;
+}
 .comment{
     margin-top: 5%;
     width: 100%;

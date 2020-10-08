@@ -8,7 +8,7 @@
     background-color: #8BBC55;
     z-index: 999;
     cursor: default;
-    animation: xenophobe 0.9s ease infinite alternate
+    animation: xenophobe 0.9s ease infinite;
 }
 .regle_de_jeu:hover{
     bottom: -110px;
