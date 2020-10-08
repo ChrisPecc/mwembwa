@@ -7,6 +7,13 @@ const treeSchema = new mongoose.Schema(
     {
         lat: {type: Number},
         lon: {type: Number},
+        bought_at: {type: Date},
+        former_owners: [
+            {
+                username: {type: ObjectId, ref: "User"},
+                buying_date: {type: Date},
+            },
+        ],
         location: {
             type: {type: String, default: "Point"},
             // [lon, lat] so we can use $near : $geometry

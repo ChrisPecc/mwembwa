@@ -29,8 +29,8 @@ const calcTreeValueOwnedByOthers = (
     let playerTreeValues = 0;
 
     treeList.forEach(resp1 => {
-        // console.log(`owner ${resp1.owner}`);
-        // console.log(`target user ${req.body.user_id}`);
+        console.log(`owner ${resp1.owner}`);
+        console.log(`target user ${req.body.user_id}`);
         if (resp1.owner === null) {
             totalTreeCount++;
         } else if (resp1._id.toString() === targetTree._id.toString()) {
@@ -74,6 +74,7 @@ const displayAllTrees = (req, res) => {
 
 const displayOneTree = (req, res) => {
     Tree.findOne({_id: req.params.id})
+        .populate("former_owners.username")
         .populate("owner")
         .populate("comments.user")
         .then(async resp => {
@@ -156,7 +157,7 @@ const buyOneTree = async (req, res) => {
     // console.log(buyingUser);
     let basicTreeValue;
     basicTreeValue = calcTreeValue(targetTree);
-    // console.log(basicTreeValue)
+    console.log(`bv ${basicTreeValue}`);
     let treeValue;
 
     let treeName;
@@ -187,6 +188,7 @@ const buyOneTree = async (req, res) => {
         console.log("owned by other case");
         // console.log(targetTree.location.coordinates);
         treeName = targetTree.nickname;
+        // console.log(targetTree)
         treeValue = await Tree.find({
             location: {
                 $near: {
@@ -199,18 +201,22 @@ const buyOneTree = async (req, res) => {
             },
         })
             .then(resp => {
-                calcTreeValueOwnedByOthers(
+                const value = calcTreeValueOwnedByOthers(
                     resp,
                     targetTree,
                     basicTreeValue,
                     req,
                 );
+                console.log(`value${value}`);
+                return value;
             })
             .catch(error => {
                 console.log(error);
             });
     }
+    console.log(treeValue);
 
+    console.log(`lc ${buyingUser.leaves_count}`);
     if (buyingUser.leaves_count < treeValue) {
         return res
             .status(403)
@@ -222,25 +228,57 @@ const buyOneTree = async (req, res) => {
         {leaves_count: buyingUser.leaves_count - treeValue},
     )
         .then(() => {
+            let previousOwner;
+            let previousDate;
+
+            if (targetTree.owner === null) {
+                previousOwner = null;
+                previousDate = null;
+            } else {
+                previousOwner = targetTree.owner;
+                previousDate = targetTree.bought_at;
+            }
             Tree.updateOne(
                 {_id: req.params.id},
                 {
-                    owner: req.body.user_id,
-                    nickname: treeName,
+                    $push: {
+                        former_owners: [
+                            {
+                                username: previousOwner,
+                                buying_date: previousDate,
+                            },
+                        ],
+                    },
                 },
+                {new: true},
             )
                 .then(() => {
-                    logFunctions.writeIntoLog(
-                        buyingUser._id,
-                        "has bought",
-                        targetTree._id,
-                        res,
-                    );
-                    res.status(200).json({message: "Tree bought"});
+                    Tree.updateOne(
+                        {_id: req.params.id},
+                        {
+                            owner: req.body.user_id,
+                            bought_at: Date.now(),
+                            nickname: treeName,
+                        },
+                    )
+                        .then(() => {
+                            logFunctions.writeIntoLog(
+                                buyingUser._id,
+                                "has bought",
+                                targetTree._id,
+                                res,
+                            );
+                            res.status(200).json({message: "Tree bought"});
+                        })
+                        .catch(error =>
+                            res.status(500).json({message: `error3 ${error}`}),
+                        );
                 })
-                .catch(error => res.status(500).json({message: error}));
+                .catch(error =>
+                    res.status(500).json({message: `error2 ${error}`}),
+                );
         })
-        .catch(error => res.status(500).json({message: error}));
+        .catch(error => res.status(500).json({message: `error1 ${error}`}));
 
     return "done";
 };

@@ -63,7 +63,7 @@ app.use("/api/logs", routesLogs);
 //         console.log(error);
 //     });
 
-// Tree.update({}, {$unset: {geoloc: 1}}, {multi: true})
+// Tree.update({}, {$set: {former_owners: []}}, {multi: true})
 // .then(resp => {
 //     console.log("field added");
 // })
