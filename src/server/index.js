@@ -50,7 +50,7 @@ mongoose
 
 app.use(bodyParser.json());
 
-app.use("/api/user", routesUsers);
+app.use("/api/users", routesUsers);
 app.use("/api/trees", routesTrees);
 app.use("/api/logs", routesLogs);
 

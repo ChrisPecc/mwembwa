@@ -4,6 +4,66 @@ import nameFunctions from "./random-name";
 import logFunctions from "./log-functions";
 
 // const mongoose = require("mongoose");
+const calcTreeValue = tree => {
+    let value;
+    if (tree.height === null) {
+        value = 250;
+    } else if (tree.circumf === null) {
+        value = 250;
+    } else {
+        value = Math.ceil((tree.height * tree.circumf) / Math.PI);
+    }
+    return value;
+};
+
+const calcTreeValueOwnedByOthers = (
+    treeList,
+    targetTree,
+    basicTreeValue,
+    req,
+) => {
+    let targetPlayerTreeValues = 0;
+    let targetPlayerTreeCount = 0;
+    let totalTreeCount = 0;
+    let otherPlayersTreeValues = 0;
+    let playerTreeValues = 0;
+
+    treeList.forEach(resp1 => {
+        // console.log(`owner ${resp1.owner}`);
+        // console.log(`target user ${req.body.user_id}`);
+        if (resp1.owner === null) {
+            totalTreeCount++;
+        } else if (resp1._id.toString() === targetTree._id.toString()) {
+            targetPlayerTreeCount++;
+        } else if (resp1.owner.toString() === targetTree.owner.toString()) {
+            targetPlayerTreeValues =
+                targetPlayerTreeValues + calcTreeValue(resp1);
+            targetPlayerTreeCount = targetPlayerTreeCount + 1;
+            totalTreeCount++;
+        } else if (resp1.owner.toString() === req.body.user_id.toString) {
+            playerTreeValues = playerTreeValues + calcTreeValue(resp1);
+            totalTreeCount++;
+        } else {
+            // console.log(resp1)
+            otherPlayersTreeValues =
+                otherPlayersTreeValues + calcTreeValue(resp1);
+            totalTreeCount++;
+        }
+    });
+    // console.log(totalTreeCount);
+    // console.log(`tptv ${targetPlayerTreeValues}`);
+    // console.log(`tptc ${targetPlayerTreeCount}`);
+    // console.log(`ptv ${playerTreeValues}`);
+    // console.log(`optv ${otherPlayersTreeValues}`);
+    // console.log(basicTreeValue)
+    const treeValue =
+        basicTreeValue +
+        (targetPlayerTreeValues * totalTreeCount) / targetPlayerTreeCount +
+        otherPlayersTreeValues -
+        playerTreeValues;
+    console.log(`final ${treeValue}`);
+    return treeValue;
+};
 
 const displayAllTrees = (req, res) => {
     Tree.find()
@@ -16,8 +76,38 @@ const displayOneTree = (req, res) => {
     Tree.findOne({_id: req.params.id})
         .populate("owner")
         .populate("comments.user")
-        .then(resp => res.status(200).json({message: resp}))
-        .catch(error => res.status(500).json({message: error}));
+        .then(async resp => {
+            console.log(resp);
+            const basicTreeValue = calcTreeValue(resp);
+            await Tree.find({
+                location: {
+                    $near: {
+                        $geometry: {
+                            type: "Point",
+                            coordinates: resp.location.coordinates,
+                        },
+                        $maxDistance: 100,
+                    },
+                },
+            })
+                .then(response => {
+                    const treeValue = calcTreeValueOwnedByOthers(
+                        response,
+                        resp,
+                        basicTreeValue,
+                        req,
+                    );
+                    res.status(200).json({
+                        message: resp,
+                        basicTreeValue,
+                        treeValueOwnedByOthers: treeValue,
+                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        })
+        .catch(error => res.status(500).json({message: `error ${error}`}));
 };
 
 const addComment = async (req, res) => {
@@ -59,18 +149,6 @@ const addComment = async (req, res) => {
     return "done";
 };
 
-const calcTreeValue = tree => {
-    let value;
-    if (tree.height === null) {
-        value = 250;
-    } else if (tree.circumf === null) {
-        value = 250;
-    } else {
-        value = Math.ceil((tree.height * tree.circumf) / Math.PI);
-    }
-    return value;
-};
-
 const buyOneTree = async (req, res) => {
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
@@ -80,11 +158,6 @@ const buyOneTree = async (req, res) => {
     basicTreeValue = calcTreeValue(targetTree);
     // console.log(basicTreeValue)
     let treeValue;
-    let targetPlayerTreeValues = 0;
-    let targetPlayerTreeCount = 0;
-    let totalTreeCount = 0;
-    let otherPlayersTreeValues = 0;
-    let playerTreeValues = 0;
 
     let treeName;
 
@@ -126,49 +199,12 @@ const buyOneTree = async (req, res) => {
             },
         })
             .then(resp => {
-                resp.forEach(resp1 => {
-                    // console.log(`owner ${resp1.owner}`);
-                    // console.log(`target user ${req.body.user_id}`);
-                    if (resp1.owner === null) {
-                        totalTreeCount++;
-                    } else if (
-                        resp1._id.toString() === targetTree._id.toString()
-                    ) {
-                        targetPlayerTreeCount++;
-                    } else if (
-                        resp1.owner.toString() === targetTree.owner.toString()
-                    ) {
-                        targetPlayerTreeValues =
-                            targetPlayerTreeValues + calcTreeValue(resp1);
-                        targetPlayerTreeCount = targetPlayerTreeCount + 1;
-                        totalTreeCount++;
-                    } else if (
-                        resp1.owner.toString() === req.body.user_id.toString
-                    ) {
-                        playerTreeValues =
-                            playerTreeValues + calcTreeValue(resp1);
-                        totalTreeCount++;
-                    } else {
-                        // console.log(resp1)
-                        otherPlayersTreeValues =
-                            otherPlayersTreeValues + calcTreeValue(resp1);
-                        totalTreeCount++;
-                    }
-                });
-                // console.log(totalTreeCount);
-                // console.log(`tptv ${targetPlayerTreeValues}`);
-                // console.log(`tptc ${targetPlayerTreeCount}`);
-                // console.log(`ptv ${playerTreeValues}`);
-                // console.log(`optv ${otherPlayersTreeValues}`);
-                // console.log(basicTreeValue)
-                treeValue =
-                    basicTreeValue +
-                    (targetPlayerTreeValues * totalTreeCount) /
-                        targetPlayerTreeCount +
-                    otherPlayersTreeValues -
-                    playerTreeValues;
-                console.log(`final ${treeValue}`);
-                return treeValue;
+                calcTreeValueOwnedByOthers(
+                    resp,
+                    targetTree,
+                    basicTreeValue,
+                    req,
+                );
             })
             .catch(error => {
                 console.log(error);

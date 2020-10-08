@@ -4,10 +4,16 @@ import Tree from "../model/tree";
 import nameFunctions from "./random-name";
 import logFunctions from "./log-functions";
 
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const leavesFunctions = require("../functions/leaves-functions");
+
+const displayAllUsers = (req, res) => {
+    User.find()
+        .then(resp => res.status(200).json({message: resp}))
+        .catch(error => res.status(500).json({message: error}));
+};
 
 const startingFreeTrees = async (req, res) => {
     const userJustCreated = await User.findOne({
@@ -122,15 +128,15 @@ const login = (req, res) => {
 
             return res.status(200).json({
                 user_id: resp._id,
-                username : resp.username,
+                username: resp.username,
                 token: jwt.sign(
-                    { user_id: resp._id},
+                    {user_id: resp._id},
                     "D4CC737A277F6B29C32D302E385C238AD8B2E1CC0C368B9FAD7537F9D27DD106",
-                    {expiresIn: "24h"}
-                )
+                    {expiresIn: "24h"},
+                ),
             });
         })
         .catch(error => console.log(error));
 };
 
-module.exports = {signUp, login};
+module.exports = {signUp, login, displayAllUsers};
