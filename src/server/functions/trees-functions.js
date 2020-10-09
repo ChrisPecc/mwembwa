@@ -29,6 +29,7 @@ const calcTreeValueOwnedByOthers = (
     let otherPlayersTreeValues = 0;
     let playerTreeValues = 0;
     let treeValue;
+    console.log(userId);
 
     if (targetTree.owner === null) {
         treeValue = basicTreeValue;
@@ -110,7 +111,7 @@ const displayOneTree = (req, res) => {
                         response,
                         resp,
                         basicTreeValue,
-                        req.paramsuserid,
+                        req.params.userid,
                     );
                     res.status(200).json({
                         message: resp,
