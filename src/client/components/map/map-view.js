@@ -1,5 +1,6 @@
+/* eslint-disable no-const-assign */
 /* eslint-disable no-console */
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Map, TileLayer} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import Marker from "./marker/marker";
@@ -11,17 +12,13 @@ import ModalRegleJeu from "./modal-regle-jeu/regle-jeu";
 const MainMap = () => {
     // console.log(axiostree.basicTreeValue);
     // console.log(axiostree.message.is_lockede);
-    let coordinateCenterMap = {lat: 50.65145, lng: 5.57739};
+    const coordinateCenterMap = [50.65145, 5.57739];
 
     const [trees, setTrees] = useState([]);
 
     const getTreesByCoordinateCenterMap = () => {
         axios
-            .get("http://localhost/api/trees/all", {
-                params: {
-                    coordinateCenterMap,
-                },
-            })
+            .get("http://localhost/api/trees/all")
             .then(response => {
                 setTrees(response.data.message);
             })
@@ -30,11 +27,15 @@ const MainMap = () => {
             });
     };
 
-    const positionActuel = e => {
-        coordinateCenterMap = e.center;
-        getTreesByCoordinateCenterMap(coordinateCenterMap);
-        // console.log(e.center);
-    };
+    // const positionActuel = e => {
+    //     coordinateCenterMap = e.center;
+    //     getTreesByCoordinateCenterMap(coordinateCenterMap);
+    //     // console.log(e.center);
+    // };
+
+    useEffect(() => {
+        getTreesByCoordinateCenterMap();
+    }, []);
 
     const wrapperSetTrees = treesUpdated => {
         setTrees(treesUpdated);
@@ -44,10 +45,9 @@ const MainMap = () => {
     return (
         <>
             <Map
-                center={[coordinateCenterMap.lat, coordinateCenterMap.lng]}
+                center={[coordinateCenterMap[0], coordinateCenterMap[1]]}
                 zoom={18}
-                minZoom={15}
-                onViewportChanged={e => positionActuel(e)}>
+                minZoom={15}>
                 <TileLayer
                     url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
                     attribution={
@@ -59,14 +59,7 @@ const MainMap = () => {
                     trees={trees}
                     wrapperSetTrees={wrapperSetTrees}>
                     {trees.map(tree => (
-                        <Marker
-                            key={tree._id}
-                            id={tree._id}
-                            position={[
-                                tree.location.coordinates[1],
-                                tree.location.coordinates[0],
-                            ]}
-                        />
+                        <Marker key={tree._id} id={tree._id} tree={tree} />
                     ))}
                     ;
                 </MarkerClusterGroup>

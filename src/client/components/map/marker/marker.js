@@ -1,5 +1,6 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-console */
-import React from "react";
+import React, {useState} from "react";
 import {Marker} from "react-leaflet";
 import L from "leaflet";
 // import iconArbre from "./imgmarker/marker.png";
@@ -7,35 +8,46 @@ import SinglePopup from "./popup";
 // import axiostree from "../data/tree.json";
 import axios from "axios";
 
-const SingleMarker = ({id, position, trees, wrapperSetTrees}) => {
-    const openPopup = treeId => {
+const SingleMarker = ({id, tree}) => {
+    const [treeUpdated, setTreeUpdate] = useState([]);
+    // let ownerUsername;
+    const openPopup = id => {
         // const currentUser = localStorage.getItem("currentUser")
         //     ? JSON.parse(localStorage.getItem("currentUser"))
         //     : null;
 
         axios
-            .get(`http://localhost/api/trees/one/:${treeId}`)
+            .get(`http://localhost/api/trees/one/${id}`)
             .then(response => {
-                const treeUpdated = response.data;
+                // const treeUpdated = response.data.message;
+
+                setTreeUpdate(response.data.message);
+                console.log(response);
 
                 // eslint-disable-next-line no-confusing-arrow
-                const treesUpdated = trees.map(tree =>
-                    tree._id === treeUpdated._id ? {...treeUpdated} : tree,
-                );
-                wrapperSetTrees(treesUpdated);
-                // console.log(response);
+                // const treesUpdated = trees.map(treeElement =>
+                //     treeElement._id === treeUpdated._id
+                //         ? {...treeUpdated}
+                //         : treeElement,
+                // );
+                // wrapperSetTrees(treesUpdated);
+                console.log(response);
             })
             .catch(err => {
                 console.log(err);
             });
+        // console.log(`owner ${treeUpdated[1].owner.username}`);
+        // if (tree.owner === null) {
+        //     ownerUsername = "No owner yet";
+        // } else {
+        //     console.log(treeUpdated);
+        //     ownerUsername = treeUpdated[1].owner.username;
+        // }
     };
-    console.log(`marker${trees}`);
+    console.log(`marker${tree}`);
 
-    const treeMarker = trees.map(axiostree => {
-        const markerColor = axiostree.message.owner
-            ? axiostree.message.owner.color
-            : "#8BBC55";
-        const iconSvg = `<?xml version="1.0" encoding="UTF-8"?>
+    const markerColor = tree.owner ? tree.owner.color : "#8BBC55";
+    const iconSvg = `<?xml version="1.0" encoding="UTF-8"?>
         <svg enable-background="new 0 0 512.001 512.001" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
             <path d="m485.27 240.53c0-35.798-21.77-66.511-52.792-79.623 5.478-10.59 8.592-22.602 8.592-35.348 0-42.561-34.502-77.063-77.063-77.063-12.126 0-23.593 2.809-33.799 7.798-9.068-32.469-38.847-56.296-74.209-56.296s-65.14 23.827-74.209 56.296c-10.206-4.99-21.673-7.798-33.799-7.798-42.561 0-77.063 34.502-77.063 77.063 0 12.746 3.113 24.758 8.592 35.348-31.022 13.113-52.792 43.825-52.792 79.623 0 46.393 36.576 84.196 82.459 86.265 6.397 23.17 31.1 40.443 60.622 40.443 16.732 0 31.91-5.557 43.095-14.581 11.186 9.024 26.364 14.581 43.095 14.581s31.91-5.557 43.095-14.581c11.186 9.024 26.364 14.581 43.095 14.581 29.522 0 54.225-17.273 60.622-40.444 45.883-2.069 82.459-39.871 82.459-86.264z" fill="${markerColor}"/>
             <g fill="black">
@@ -48,31 +60,33 @@ const SingleMarker = ({id, position, trees, wrapperSetTrees}) => {
             <path d="m241.33 60.5c-21.621 0-40.232 12.832-48.669 31.29-8.716-6.159-19.346-9.79-30.831-9.79-29.547 0-53.5 23.953-53.5 53.5 0 9.749 2.621 18.881 7.177 26.752-25.656 3.945-45.304 26.115-45.304 52.875 0 29.547 23.953 53.5 53.5 53.5s171.13-125.08 171.13-154.63-23.951-53.5-53.5-53.5z" fill="${markerColor}"/>
         </svg>`;
 
-        const icon = L.icon({
-            iconUrl: `data:image/svg+xml;base64,${btoa(iconSvg)}`,
-            iconAnchor: [10, 0],
-            popupAnchor: [16, 0],
-            iconSize: [50, 50],
-        });
-        return (
-            <Marker
-                key={id}
-                treeId={id}
-                icon={icon}
-                position={position}
-                onClick={() => {
-                    openPopup(id);
-                }}>
-                <SinglePopup
-                    name={axiostree.message.nickname}
-                    price={axiostree.basicTreeValue}
-                    ownerName={axiostree.message.owner.username}
-                    lock={axiostree.message.is_locked}
-                />
-            </Marker>
-        );
+    const icon = L.icon({
+        iconUrl: `data:image/svg+xml;base64,${btoa(iconSvg)}`,
+        iconAnchor: [10, 0],
+        popupAnchor: [8, 0],
+        iconSize: [25, 25],
     });
-
-    return treeMarker;
+    console.log(id);
+    return (
+        <Marker
+            key={id}
+            icon={icon}
+            position={[
+                tree.location.coordinates[1],
+                tree.location.coordinates[0],
+            ]}
+            onClick={() => {
+                openPopup(id);
+            }}>
+            <SinglePopup
+                name={treeUpdated.nickname}
+                price={treeUpdated.basicTreeValue}
+                completName={treeUpdated.complete_name}
+                // ownerName={ownerUsername}
+                lock={treeUpdated.is_locked}
+                id={id}
+            />
+        </Marker>
+    );
 };
 export default SingleMarker;

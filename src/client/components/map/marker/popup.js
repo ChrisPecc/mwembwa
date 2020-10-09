@@ -3,7 +3,7 @@ import {Popup} from "react-leaflet";
 import IMG from "../imgmarker/marker.png";
 import feuille from "../imgmarker/feuille.png";
 import "../css/popup.css";
-import axiosTree from "../data/tree.json";
+// import axiosTree from "../data/tree.json";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faInfoCircle,
@@ -11,7 +11,7 @@ import {
     faLock,
 } from "@fortawesome/free-solid-svg-icons";
 
-const SinglePopup = ({name, price, ownerName, lock}) => {
+const SinglePopup = ({id, name, price, lock, completName}) => {
     const [stateOnglets, setStateOnglets] = useState(1);
     const [isShown, setIsShown] = useState(false);
     const [isLock, setIsLock] = useState(lock);
@@ -79,7 +79,8 @@ const SinglePopup = ({name, price, ownerName, lock}) => {
                                             width={"70px"}
                                             height={"70px"}
                                         />
-                                        <p>Owner: {ownerName}</p>
+                                        {/* <p>Owner: {ownerName}</p> */}
+                                        <p>{id}</p>
                                     </div>
                                     <div className={"name"}>
                                         <FontAwesomeIcon
@@ -100,7 +101,7 @@ const SinglePopup = ({name, price, ownerName, lock}) => {
                                         <a
                                             target={"_blank"}
                                             rel={"noreferrer"}
-                                            href={`https://fr.wikipedia.org/wiki/${name}`}>
+                                            href={`https://fr.wikipedia.org/wiki/${completName}`}>
                                             wikipedia
                                         </a>
                                         <FontAwesomeIcon
@@ -132,7 +133,7 @@ const SinglePopup = ({name, price, ownerName, lock}) => {
                                 <div className={"comment"}>
                                     <div className={"comments"}>
                                         {/* {trees.map(treeComment => ( */}
-                                        <div className={"singleComment"}>
+                                        {/* <div className={"singleComment"}>
                                             <h6>
                                                 {
                                                     axiosTree.message.comments
@@ -146,7 +147,7 @@ const SinglePopup = ({name, price, ownerName, lock}) => {
                                                 }
                                             </p>
                                             <hr />
-                                        </div>
+                                        </div> */}
                                         {/* ))} */}
                                     </div>
                                 </div>
