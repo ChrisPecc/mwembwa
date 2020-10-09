@@ -11,7 +11,7 @@ import {
     faLock,
 } from "@fortawesome/free-solid-svg-icons";
 
-const SinglePopup = ({id, name, price, lock, completName}) => {
+const SinglePopup = ({name, price, completName, ownerName, lock}) => {
     const [stateOnglets, setStateOnglets] = useState(1);
     const [isShown, setIsShown] = useState(false);
     const [isLock, setIsLock] = useState(lock);
@@ -79,8 +79,8 @@ const SinglePopup = ({id, name, price, lock, completName}) => {
                                             width={"70px"}
                                             height={"70px"}
                                         />
-                                        {/* <p>Owner: {ownerName}</p> */}
-                                        <p>{id}</p>
+                                        <p>Owner: {ownerName}</p>
+                                        {/* <p>{id}</p> */}
                                     </div>
                                     <div className={"name"}>
                                         <FontAwesomeIcon

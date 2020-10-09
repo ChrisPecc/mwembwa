@@ -10,14 +10,15 @@ import axios from "axios";
 
 const SingleMarker = ({id, tree}) => {
     const [treeUpdated, setTreeUpdate] = useState([]);
-    // let ownerUsername;
+    const userId = "5f7435e2fa30ad05ab7a5484";
+    let ownerUsername;
     const openPopup = id => {
         // const currentUser = localStorage.getItem("currentUser")
         //     ? JSON.parse(localStorage.getItem("currentUser"))
         //     : null;
 
         axios
-            .get(`http://localhost/api/trees/one/${id}`)
+            .get(`http://localhost/api/trees/one/${id}/${userId}`)
             .then(response => {
                 // const treeUpdated = response.data.message;
 
@@ -32,17 +33,19 @@ const SingleMarker = ({id, tree}) => {
                 // );
                 // wrapperSetTrees(treesUpdated);
                 console.log(response);
+
+                if (response.data.message.owner === null) {
+                    ownerUsername = "No owner yet";
+                } else {
+                    console.log(response.data.message);
+                    ownerUsername = response.data.message.owner.username;
+                }
+                console.log(ownerUsername);
             })
             .catch(err => {
                 console.log(err);
             });
-        // console.log(`owner ${treeUpdated[1].owner.username}`);
-        // if (tree.owner === null) {
-        //     ownerUsername = "No owner yet";
-        // } else {
-        //     console.log(treeUpdated);
-        //     ownerUsername = treeUpdated[1].owner.username;
-        // }
+        // console.log(`owner ${treeUpdated.owner.username}`);
     };
     console.log(`marker${tree}`);
 
@@ -66,7 +69,7 @@ const SingleMarker = ({id, tree}) => {
         popupAnchor: [8, 0],
         iconSize: [25, 25],
     });
-    console.log(id);
+    // console.log(id);
     return (
         <Marker
             key={id}
@@ -82,7 +85,7 @@ const SingleMarker = ({id, tree}) => {
                 name={treeUpdated.nickname}
                 price={treeUpdated.basicTreeValue}
                 completName={treeUpdated.complete_name}
-                // ownerName={ownerUsername}
+                ownerName={ownerUsername}
                 lock={treeUpdated.is_locked}
                 id={id}
             />
