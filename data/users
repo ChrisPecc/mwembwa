@@ -1,0 +1,326 @@
+[{
+  "_id": {
+    "$oid": "5f72ea8167dbd200bb433a13"
+  },
+  "leaves_count": 4049,
+  "color": "#ff0000",
+  "username": "Huey",
+  "email": "hueyduck@test.com",
+  "password": "$2a$10$LT/h5gY.z4pyQpba1j7FROdcZYbu5hQRZLn0iE55ZcjhGeOLcn1Ti",
+  "inscription_date": {
+    "$date": "2020-09-29T08:04:17.916Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f72ea9f67dbd200bb433a14"
+  },
+  "leaves_count": 100,
+  "color": "#0000ff",
+  "username": "Dewey",
+  "email": "Deweyduck@test.com",
+  "password": "$2a$10$OmheuRaaGJwibIiWZtQj6.YPfwtEnm84hCsw91lrLZOiTpZ3jBeiy",
+  "inscription_date": {
+    "$date": "2020-09-29T08:04:47.580Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f72eac167dbd200bb433a15"
+  },
+  "leaves_count": 100,
+  "color": "#00ff00",
+  "username": "Louie",
+  "email": "louieduck@test.com",
+  "password": "$2a$10$BYor.vOrBWvM6rznuiNsf.BsOq8uJffLTO0MrFuXeTVd3U99u8imG",
+  "inscription_date": {
+    "$date": "2020-09-29T08:05:21.418Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f72fe6e435c0e02ddb7ab13"
+  },
+  "leaves_count": 200,
+  "color": "#ffffff",
+  "username": "Donald",
+  "email": "donaldduck@test.com",
+  "password": "$2a$10$/gv4Xm33yIDupG2d/T75SOT/08Kh8NQFzSPtjg6wc8PsN/8uPjz8.",
+  "inscription_date": {
+    "$date": "2020-09-29T09:29:18.874Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7300af4f0fed02ebb3fa2a"
+  },
+  "leaves_count": 125,
+  "color": "#ffffff",
+  "username": "Della",
+  "email": "delladuck@test.com",
+  "password": "$2a$10$mOjPHaX.DKaYHRuxC7.JsOdcChHK2TZVTdiTCn1Q2XaYxIoH8xkyu",
+  "inscription_date": {
+    "$date": "2020-09-29T09:38:55.646Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f733c0855080506e56d9bff"
+  },
+  "color": "#ffffff",
+  "username": "Scrooge",
+  "email": "scroogemcduck@test.com",
+  "password": "$2a$10$U4WOjfxGVzPkxH3CE4ubzOxns3OgPPpWbwmTMI2K6NRKfeZJTEKYC",
+  "leaves_count": 125,
+  "inscription_date": {
+    "$date": "2020-09-29T13:52:08.236Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f733d409e7ab707b842c1fd"
+  },
+  "color": "#ffffff",
+  "username": "Launchpad",
+  "email": "launchpadmackwak@test.com",
+  "password": "$2a$10$KzyYWzI0dXo255wqY3ctcu6rwlwDpwqCWwKGuFuJLkZBkHORU7ql.",
+  "leaves_count": 125,
+  "inscription_date": {
+    "$date": "2020-09-29T13:57:20.655Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f733f2b930f0008da4ee47f"
+  },
+  "color": "#ffffff",
+  "username": "SomeoneElse",
+  "email": "test@test.com",
+  "password": "$2a$10$OexNr/ulhzQ5GAIT16Q5y.VkQaCPdyiqrlgzh8L4ZWiN9SHNeAxi2",
+  "leaves_count": 125,
+  "inscription_date": {
+    "$date": "2020-09-29T14:05:31.764Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f742fc54861e4001f668cdf"
+  },
+  "color": "#ffffff",
+  "username": "John_Carter",
+  "email": "warlord@barsoom.mar",
+  "password": "$2a$10$EiFByPiN2Wht.o.gK6VZluxLDr33bkVvAkgWjBEfZDDHRJ6VMGJRC",
+  "leaves_count": 125,
+  "inscription_date": {
+    "$date": "2020-09-30T07:12:05.523Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7435e2fa30ad05ab7a5484"
+  },
+  "color": "#ffffff",
+  "username": "Terminator",
+  "email": "t-800@skynet.com",
+  "password": "$2a$10$kBDIOHqPSqo1QPe9pP9OruxJpgvCS/bT6ibHgtuPDOYhKY3sUTF52",
+  "leaves_count": 6956,
+  "inscription_date": {
+    "$date": "2020-09-30T07:38:10.040Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f74375818af5f065fd11361"
+  },
+  "color": "#ffffff",
+  "username": "Harlock",
+  "email": "harlock@arcadia.pir",
+  "password": "$2a$10$.Te0YH0mgrT16mekMNjrF.Dim4561D27yxnBbeZuLd44bKHpMy6Bq",
+  "leaves_count": 125,
+  "inscription_date": {
+    "$date": "2020-09-30T07:44:24.309Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f743aac390d8e086f53375a"
+  },
+  "color": "#ffffff",
+  "username": "Toshiro",
+  "email": "oyama.toshiro@arcadia.pir",
+  "password": "$2a$10$wwrtTJpiHem/sWJPhGnfNeiwUNzQE6cpyPW6Ak04/0vZijZ7z9zsi",
+  "leaves_count": 445761,
+  "inscription_date": {
+    "$date": "2020-09-30T07:58:36.126Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7b324ee6431304da5dd640"
+  },
+  "color": "#FFFFFF",
+  "username": "Aragorn",
+  "email": "elessartelcontar@reunitedkingdom.me",
+  "password": "$2a$10$68tXUOb7rqQ3Q/E7r7WLkO4MxyAVDgzo3RVocx6hy5EqN034O2NYC",
+  "leaves_count": 845,
+  "inscription_date": {
+    "$date": "2020-10-05T14:48:46.123Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7b338fafb59a0500854935"
+  },
+  "color": "#FFFFFF",
+  "username": "Sam",
+  "email": "samsagacegamegie@theshire.me",
+  "password": "$2a$10$BDEIwQU367PKdAUsna9ZLerJyl0A2nFkji1V0yu8b1Xyv7LiV9K7e",
+  "leaves_count": 845,
+  "inscription_date": {
+    "$date": "2020-10-05T14:54:07.494Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7b341d9db756050e9b9665"
+  },
+  "color": "#FFFFFF",
+  "username": "merry",
+  "email": "meriadobrandybuck@theshire.me",
+  "password": "$2a$10$2HcOnwTqoRyLl8XewH5eCevXNuaHZISoZ8csR//o5AOkc.5iWUklW",
+  "leaves_count": 845,
+  "inscription_date": {
+    "$date": "2020-10-05T14:56:29.517Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7b353190c2c30546afa8d8"
+  },
+  "color": "#FFFFFF",
+  "username": "pippin",
+  "email": "perigrintook@theshire.me",
+  "password": "$2a$10$ZXYKVIRoqh95bKmkCQi4Ye81/Ua49YZsmm7/mUETI3nhe1QlTSpaW",
+  "leaves_count": 845,
+  "inscription_date": {
+    "$date": "2020-10-05T15:01:05.508Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7b367f57c9460602506043"
+  },
+  "color": "#FFFFFF",
+  "username": "LetoII",
+  "email": "letoatreides@godemperor.dune",
+  "password": "$2a$10$INZZpMg3m5OK57QehWk3tOwG4.CYrk.gMsvFwg8YIQMGqCjFitPoG",
+  "leaves_count": 845,
+  "inscription_date": {
+    "$date": "2020-10-05T15:06:39.959Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7b36f888a37c0610fd0bd6"
+  },
+  "color": "#FFFFFF",
+  "username": "Muad-dib",
+  "email": "paulatreides@atreides.imp",
+  "password": "$2a$10$jwoE3m93kEHhjICiedSP/u6Tm84NUoklI03AAPjsjo9cAhTehtKLO",
+  "leaves_count": 845,
+  "inscription_date": {
+    "$date": "2020-10-05T15:08:40.249Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7c18b7ff5c0f0012210106"
+  },
+  "color": "#FFFFFF",
+  "username": "test",
+  "email": "test@atreides.imp",
+  "password": "$2a$10$0aJFW38mhMXw/CvOfc.50.DWAtsMTLS4rJVTAtvj9JrQeLd7yHr9q",
+  "leaves_count": 845,
+  "inscription_date": {
+    "$date": "2020-10-06T07:11:51.934Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7c1a29d3cbdb002047ab11"
+  },
+  "color": "#FFFFFF",
+  "username": "alia",
+  "email": "alia@atreide.imp",
+  "password": "$2a$10$F50kyLAuUguXPhRruB0aVOOUII1GeCDBC3huy4fBIrLVsszjruoY2",
+  "leaves_count": 845,
+  "inscription_date": {
+    "$date": "2020-10-06T07:18:01.791Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7c2453a3dd9600a0efc2fb"
+  },
+  "color": "#FFFFFF",
+  "username": "Chani",
+  "email": "chani@fremen.dune",
+  "password": "$2a$10$XR7Sqp0w6udThE1sUtYzf.6caRb3ZUfHdXH/BY/8lJkDlkonTynrC",
+  "leaves_count": 1043,
+  "inscription_date": {
+    "$date": "2020-10-06T08:01:23.156Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7c258a6230a900e6d7ea56"
+  },
+  "color": "#FFFFFF",
+  "username": "Arthur",
+  "email": "arthurpendragon@camelot.bt",
+  "password": "$2a$10$TZd2RI3h5W15dHfwQrHoUuyzRUMwhkHZW8C4508WlbOO9EMZyASmW",
+  "leaves_count": 1043,
+  "inscription_date": {
+    "$date": "2020-10-06T08:06:34.729Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7c26b274e4c0010287dffe"
+  },
+  "color": "#FFFFFF",
+  "username": "Goliath",
+  "email": "goliath@clocktower.ny",
+  "password": "$2a$10$u0SKMUWkuAofpqkVI7ZCje.jE88s8lSkO3hNSUwejs3nooch73u5m",
+  "leaves_count": 1043,
+  "inscription_date": {
+    "$date": "2020-10-06T08:11:30.459Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7c68b3942d3e0300ab216f"
+  },
+  "color": "#FFFFFF",
+  "username": "Elisa",
+  "email": "elisamaza@police.ny",
+  "password": "$2a$10$p4lZcd5Dipburgl95R.Q3.Ej8t5h5OnXhWDwxkLQ2IJEbB9DHKCgi",
+  "leaves_count": 16074,
+  "inscription_date": {
+    "$date": "2020-10-06T12:53:07.668Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f7dad1c912ef2002062146a"
+  },
+  "color": "#FFFFFF",
+  "username": "JCVD",
+  "email": "jcvd@jcvd.com",
+  "password": "$2a$10$3UVWGxiSlxe3N5AK6oVhBuhTLyQ09W.IgTq7rETv7NzLZk5vrPeDK",
+  "leaves_count": 4840,
+  "inscription_date": {
+    "$date": "2020-10-07T11:57:16.891Z"
+  },
+  "__v": 0
+}]
