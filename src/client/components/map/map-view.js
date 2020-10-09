@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {Map, TileLayer} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import Marker from "./marker/marker";
-import axiostree from "./data/tree.json";
+// import axiostree from "./data/tree.json";
 import axios from "axios";
 import "./css/map-view.css";
 import ModalRegleJeu from "./modal-regle-jeu/regle-jeu";
@@ -17,13 +17,13 @@ const MainMap = () => {
 
     const getTreesByCoordinateCenterMap = () => {
         axios
-            .get("/api/tree/", {
+            .get("http://localhost/api/trees/all", {
                 params: {
                     coordinateCenterMap,
                 },
             })
             .then(response => {
-                setTrees(response.data);
+                setTrees(response.data.message);
             })
             .catch(err => {
                 console.log(err);
@@ -33,19 +33,18 @@ const MainMap = () => {
     const positionActuel = e => {
         coordinateCenterMap = e.center;
         getTreesByCoordinateCenterMap(coordinateCenterMap);
+        // console.log(e.center);
     };
 
     const wrapperSetTrees = treesUpdated => {
         setTrees(treesUpdated);
     };
+    console.log(trees);
 
     return (
         <>
             <Map
-                center={[
-                    axiostree.message.location.coordinates[1],
-                    axiostree.message.location.coordinates[0],
-                ]}
+                center={[coordinateCenterMap.lat, coordinateCenterMap.lng]}
                 zoom={18}
                 minZoom={15}
                 onViewportChanged={e => positionActuel(e)}>
@@ -61,10 +60,11 @@ const MainMap = () => {
                     wrapperSetTrees={wrapperSetTrees}>
                     {trees.map(tree => (
                         <Marker
-                            key={tree.message._id}
+                            key={tree._id}
+                            id={tree._id}
                             position={[
-                                tree.message.location.coordinates[1],
-                                tree.message.location.coordinates[0],
+                                tree.location.coordinates[1],
+                                tree.location.coordinates[0],
                             ]}
                         />
                     ))}

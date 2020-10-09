@@ -9,14 +9,12 @@ import axios from "axios";
 
 const SingleMarker = ({id, position, trees, wrapperSetTrees}) => {
     const openPopup = treeId => {
-        const currentUser = localStorage.getItem("currentUser")
-            ? JSON.parse(localStorage.getItem("currentUser"))
-            : null;
+        // const currentUser = localStorage.getItem("currentUser")
+        //     ? JSON.parse(localStorage.getItem("currentUser"))
+        //     : null;
 
         axios
-            .get(`/api/tree/${treeId}`, {
-                headers: {Authorization: `Bearer ${currentUser.token}`},
-            })
+            .get(`http://localhost/api/trees/one/:${treeId}`)
             .then(response => {
                 const treeUpdated = response.data;
 
@@ -25,12 +23,13 @@ const SingleMarker = ({id, position, trees, wrapperSetTrees}) => {
                     tree._id === treeUpdated._id ? {...treeUpdated} : tree,
                 );
                 wrapperSetTrees(treesUpdated);
-                console.log(response);
+                // console.log(response);
             })
             .catch(err => {
                 console.log(err);
             });
     };
+    console.log(`marker${trees}`);
 
     const treeMarker = trees.map(axiostree => {
         const markerColor = axiostree.message.owner
@@ -58,6 +57,7 @@ const SingleMarker = ({id, position, trees, wrapperSetTrees}) => {
         return (
             <Marker
                 key={id}
+                treeId={id}
                 icon={icon}
                 position={position}
                 onClick={() => {
