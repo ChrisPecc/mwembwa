@@ -20,47 +20,58 @@ const calcTreeValueOwnedByOthers = (
     treeList,
     targetTree,
     basicTreeValue,
-    req,
+    userId,
 ) => {
     let targetPlayerTreeValues = 0;
     let targetPlayerTreeCount = 0;
     let totalTreeCount = 0;
     let otherPlayersTreeValues = 0;
     let playerTreeValues = 0;
+    let treeValue;
 
-    treeList.forEach(resp1 => {
-        console.log(`owner ${resp1.owner}`);
-        console.log(`target user ${req.body.user_id}`);
-        if (resp1.owner === null) {
-            totalTreeCount++;
-        } else if (resp1._id.toString() === targetTree._id.toString()) {
-            targetPlayerTreeCount++;
-        } else if (resp1.owner.toString() === targetTree.owner.toString()) {
-            targetPlayerTreeValues =
-                targetPlayerTreeValues + calcTreeValue(resp1);
-            targetPlayerTreeCount = targetPlayerTreeCount + 1;
-            totalTreeCount++;
-        } else if (resp1.owner.toString() === req.body.user_id.toString) {
-            playerTreeValues = playerTreeValues + calcTreeValue(resp1);
-            totalTreeCount++;
-        } else {
-            // console.log(resp1)
-            otherPlayersTreeValues =
-                otherPlayersTreeValues + calcTreeValue(resp1);
-            totalTreeCount++;
-        }
-    });
-    // console.log(totalTreeCount);
-    // console.log(`tptv ${targetPlayerTreeValues}`);
-    // console.log(`tptc ${targetPlayerTreeCount}`);
-    // console.log(`ptv ${playerTreeValues}`);
-    // console.log(`optv ${otherPlayersTreeValues}`);
-    // console.log(basicTreeValue)
-    const treeValue =
-        basicTreeValue +
-        (targetPlayerTreeValues * totalTreeCount) / targetPlayerTreeCount +
-        otherPlayersTreeValues -
-        playerTreeValues;
+    if (targetTree.owner === null) {
+        treeValue = basicTreeValue;
+    } else {
+        treeList.forEach(resp1 => {
+            console.log(`treeId ${resp1._id}`);
+            console.log(`owner ${resp1.owner}`);
+            console.log(`target user ${userId}`);
+            if (resp1.owner === null) {
+                console.log("owner=null case");
+                totalTreeCount++;
+            } else if (resp1._id.toString() === targetTree._id.toString()) {
+                console.log("cas c'est l'abre d'achat");
+                targetPlayerTreeCount++;
+            } else if (resp1.owner.toString() === targetTree.owner.toString()) {
+                console.log("owner= possédé par l'owner du target tree");
+                targetPlayerTreeValues =
+                    targetPlayerTreeValues + calcTreeValue(resp1);
+                targetPlayerTreeCount = targetPlayerTreeCount + 1;
+                totalTreeCount++;
+            } else if (resp1.owner.toString() === userId.toString()) {
+                console.log("possédé par l'acheteur");
+                playerTreeValues = playerTreeValues + calcTreeValue(resp1);
+                totalTreeCount++;
+            } else {
+                console.log("possédé par d'autres");
+                otherPlayersTreeValues =
+                    otherPlayersTreeValues + calcTreeValue(resp1);
+                totalTreeCount++;
+            }
+        });
+        // console.log(totalTreeCount);
+        // console.log(`tptv ${targetPlayerTreeValues}`);
+        // console.log(`tptc ${targetPlayerTreeCount}`);
+        // console.log(`ptv ${playerTreeValues}`);
+        // console.log(`optv ${otherPlayersTreeValues}`);
+        // console.log(basicTreeValue)
+        treeValue =
+            basicTreeValue +
+            (targetPlayerTreeValues * totalTreeCount) / targetPlayerTreeCount +
+            otherPlayersTreeValues -
+            playerTreeValues;
+    }
+
     console.log(`final ${treeValue}`);
     return treeValue;
 };
@@ -96,7 +107,7 @@ const displayOneTree = (req, res) => {
                         response,
                         resp,
                         basicTreeValue,
-                        req,
+                        req.paramsuserid,
                     );
                     res.status(200).json({
                         message: resp,
@@ -205,7 +216,7 @@ const buyOneTree = async (req, res) => {
                     resp,
                     targetTree,
                     basicTreeValue,
-                    req,
+                    req.body.user_id,
                 );
                 console.log(`value${value}`);
                 return value;
