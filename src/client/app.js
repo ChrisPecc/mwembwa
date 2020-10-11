@@ -12,6 +12,6 @@ import ReactDOM from "react-dom";
 import GamePage from "./components/game-page/game-page";
 
 // eslint-disable-next-line no-unused-vars
-import css from "./main.css";
+import scss from "./main.scss";
 
 ReactDOM.render(<GamePage />, document.querySelector("#app"));

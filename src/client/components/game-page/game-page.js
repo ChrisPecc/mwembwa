@@ -6,6 +6,7 @@ import MainMap from "../map/map-view";
 import Leaderboard from "../modal/leaderboard";
 import Gamelog from "../modal/gamelog";
 import Signin from "../modal/signin";
+import Signup from "../modal/signup";
 
 const GamePage = () => {
     const [runLeader, setRunLeader] = useState(false);
@@ -29,10 +30,10 @@ const GamePage = () => {
     }, [setRunSignUp]);
     return (
         <div>
-            <div>
+            <div className={"map"}>
                 <MainMap />
             </div>
-            <div>
+            <div className={"button1"}>
                 <Tools
                     leaderboard={showLeader}
                     gamelog={showgamelog}
@@ -40,10 +41,12 @@ const GamePage = () => {
                     signup={showsignup}
                 />
             </div>
-            <Leaderboard show={runLeader} />
-            <Gamelog show={runLog} />
-            <Signin show={runSignIn} />
-            <Gamelog show={runSignUp} />
+            <div className={"button2"}>
+                <Leaderboard show={runLeader} />
+                <Gamelog show={runLog} />
+                <Signin show={runSignIn} />
+                <Signup show={runSignUp} />
+            </div>
         </div>
     );
 };

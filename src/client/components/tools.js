@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./game-page/button";
 
 const Tools = ({leaderboard, gamelog, signin, signup}) => (
-    <div>
+    <div className={"action"}>
         <Button
             title={"leaderboard"}
             label={"leaderboard"}
