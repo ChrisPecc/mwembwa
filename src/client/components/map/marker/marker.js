@@ -1,53 +1,73 @@
-/* eslint-disable no-shadow */
 /* eslint-disable no-console */
+/* eslint-disable no-shadow */
 import React, {useState} from "react";
 import {Marker} from "react-leaflet";
 import L from "leaflet";
-// import iconArbre from "./imgmarker/marker.png";
 import SinglePopup from "./popup";
-// import axiostree from "../data/tree.json";
 import axios from "axios";
 
 const SingleMarker = ({id, tree}) => {
+    const [ownerUsername, setOwnerUsername] = useState([]);
     const [treeUpdated, setTreeUpdate] = useState([]);
+    const [priceTree, setPriceTree] = useState([]);
+    const [comments, setComments] = useState([]);
+    const [isLoading, setLoading] = useState(true);
+    const [isLock, setIsLock] = useState([]);
+
     const userId = "5f7435e2fa30ad05ab7a5484";
-    let ownerUsername;
+
     const openPopup = id => {
         // const currentUser = localStorage.getItem("currentUser")
         //     ? JSON.parse(localStorage.getItem("currentUser"))
         //     : null;
-
         axios
             .get(`http://localhost/api/trees/one/${id}/${userId}`)
             .then(response => {
-                // const treeUpdated = response.data.message;
-
-                setTreeUpdate(response.data.message);
-                console.log(response);
-
-                // eslint-disable-next-line no-confusing-arrow
-                // const treesUpdated = trees.map(treeElement =>
-                //     treeElement._id === treeUpdated._id
-                //         ? {...treeUpdated}
-                //         : treeElement,
+                const responses = response;
+                setTreeUpdate(responses.data.message);
+                // console.log(
+                //     `treeValueOwnedByOthers ${response.data.treeValueOwnedByOthers}`,
                 // );
-                // wrapperSetTrees(treesUpdated);
-                console.log(response);
+                // console.log(`basicTreeValue ${response.data.basicTreeValue}`);
 
-                if (response.data.message.owner === null) {
-                    ownerUsername = "No owner yet";
+                if (responses.data.message.owner === null) {
+                    setOwnerUsername("No owner yet");
+                    setPriceTree(responses.data.basicTreeValue);
                 } else {
-                    console.log(response.data.message);
-                    ownerUsername = response.data.message.owner.username;
+                    // console.log(response.data.message);
+                    setOwnerUsername(responses.data.message.owner.username);
+                    setPriceTree(responses.data.treeValueOwnedByOthers);
                 }
-                console.log(ownerUsername);
+
+                if (!responses.data.message.comment) {
+                    setComments("No comments yet");
+                } else {
+                    setComments(responses.data.message.comments);
+                }
+                // console.log(`username owner marker.js ${ownerUsername}`);
+                setLoading(false);
+                setIsLock(responses.data.message.is_locked);
             })
             .catch(err => {
                 console.log(err);
             });
-        // console.log(`owner ${treeUpdated.owner.username}`);
     };
-    console.log(`marker${tree}`);
+    // console.log(`username owner marker.js ${ownerUsername}`);
+    // console.log(`price tree ${priceTree}`);
+    // console.log(treeUpdated);
+    // console.log(isLock);
+
+    // let commentComment;
+    // let commentUsername;
+
+    // if(comments === "No comments yet"){
+    //     return "No comments yet";
+    // }else{
+    //     comments.map(commentaire => {
+    //         commentComment = commentaire.comment,
+    //         commentUsername = commentaire.user.username,
+    //     });
+    // }
 
     const markerColor = tree.owner ? tree.owner.color : "#8BBC55";
     const iconSvg = `<?xml version="1.0" encoding="UTF-8"?>
@@ -83,11 +103,15 @@ const SingleMarker = ({id, tree}) => {
             }}>
             <SinglePopup
                 name={treeUpdated.nickname}
-                price={treeUpdated.basicTreeValue}
+                priceTree={priceTree}
                 completName={treeUpdated.complete_name}
-                ownerName={ownerUsername}
-                lock={treeUpdated.is_locked}
+                ownerUsername={ownerUsername}
+                isLock={isLock}
                 id={id}
+                isLoading={isLoading}
+                comments={comments}
+                // commentComment={commentComment}
+                // commentUsername={commentUsername}
             />
         </Marker>
     );

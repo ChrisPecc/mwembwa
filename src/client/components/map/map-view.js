@@ -4,14 +4,11 @@ import React, {useState, useEffect} from "react";
 import {Map, TileLayer} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import Marker from "./marker/marker";
-// import axiostree from "./data/tree.json";
 import axios from "axios";
 import "./css/map-view.css";
 import ModalRegleJeu from "./modal-regle-jeu/regle-jeu";
 
 const MainMap = () => {
-    // console.log(axiostree.basicTreeValue);
-    // console.log(axiostree.message.is_lockede);
     const coordinateCenterMap = [50.65145, 5.57739];
 
     const [trees, setTrees] = useState([]);
@@ -40,7 +37,7 @@ const MainMap = () => {
     const wrapperSetTrees = treesUpdated => {
         setTrees(treesUpdated);
     };
-    console.log(trees);
+    // console.log(trees);
 
     return (
         <>

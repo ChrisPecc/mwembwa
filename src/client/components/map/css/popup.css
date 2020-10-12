@@ -119,6 +119,7 @@
 }
 .iconLock{
     position: absolute;
+    cursor: pointer;
     bottom: 10%;
     right: 0;
 }
