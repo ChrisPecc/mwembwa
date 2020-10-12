@@ -17,6 +17,8 @@
 //     console.log("number of actions " +numberOfActions + " time modulo " + timeModulo)
 //     // let quarterCount = quarterSinceLastCalc
 
+//     let quarterCountLoop;
+
 //     const users = await User.find()
 //     // console.log (users)
 
@@ -26,7 +28,6 @@
 //         console.log(user.username + "'s leave count " + newLeavesAmount)
 //         const userTrees = await Tree.find({owner: user._id})
 //         // console.log("ut " + userTrees);
-//         let quarterCountLoop
 //         userTrees.forEach(treeElement => {
 //             quarterCountLoop = quarterSinceLastCalc
 //             treesValue = treesValue + treesFunctions.calcTreeValue(treeElement)
@@ -39,11 +40,13 @@
 //                 }
 //             }
 //         })
+//         console.log(user.username +" nla " +newLeavesAmount)
 //         // console.log("global quarter " + quarterSinceLastCalc)
 //         console.log(user.username + " quarter count "+ quarterCountLoop)
 
 //     })
 
+//     console.log("final quarter count "+ quarterCountLoop)
 //     // quarterSinceLastCalc = quarterLeft
 //     timeLeftFromPreviousRequests = timeModulo
 //     lastRequestDate = newRequestDate
