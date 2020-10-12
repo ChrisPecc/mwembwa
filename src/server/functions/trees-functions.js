@@ -28,33 +28,33 @@ const calcTreeValueOwnedByOthers = (
     let otherPlayersTreeValues = 0;
     let playerTreeValues = 0;
     let treeValue;
-    console.log(userId);
+    // console.log(userId);
 
     if (targetTree.owner === null) {
         treeValue = basicTreeValue;
     } else {
         treeList.forEach(resp1 => {
-            console.log(`treeId ${resp1._id}`);
-            console.log(`owner ${resp1.owner}`);
-            console.log(`target user ${userId}`);
+            // console.log(`treeId ${resp1._id}`);
+            // console.log(`owner ${resp1.owner}`);
+            // console.log(`target user ${userId}`);
             if (resp1.owner === null) {
-                console.log("owner=null case");
+                // console.log("owner=null case");
                 totalTreeCount++;
             } else if (resp1._id.toString() === targetTree._id.toString()) {
-                console.log("cas c'est l'abre d'achat");
+                // console.log("cas c'est l'abre d'achat");
                 targetPlayerTreeCount++;
             } else if (resp1.owner.toString() === targetTree.owner.toString()) {
-                console.log("owner= possédé par l'owner du target tree");
+                // console.log("owner= possédé par l'owner du target tree");
                 targetPlayerTreeValues =
                     targetPlayerTreeValues + calcTreeValue(resp1);
                 targetPlayerTreeCount = targetPlayerTreeCount + 1;
                 totalTreeCount++;
             } else if (resp1.owner.toString() === userId.toString()) {
-                console.log("possédé par l'acheteur");
+                // console.log("possédé par l'acheteur");
                 playerTreeValues = playerTreeValues + calcTreeValue(resp1);
                 totalTreeCount++;
             } else {
-                console.log("possédé par d'autres");
+                // console.log("possédé par d'autres");
                 otherPlayersTreeValues =
                     otherPlayersTreeValues + calcTreeValue(resp1);
                 totalTreeCount++;
@@ -90,7 +90,7 @@ const displayOneTree = (req, res) => {
         .populate("owner")
         .populate("comments.user")
         .then(async resp => {
-            console.log(resp);
+            // console.log(resp);
             const basicTreeValue = calcTreeValue(resp);
             await Tree.find({
                 location: {
@@ -406,4 +406,5 @@ module.exports = {
     displayOneTree,
     buyOneTree,
     lockOneTree,
+    calcTreeValue,
 };

@@ -8,7 +8,7 @@ const Test = () => {
 
     const submitValues = data => {
         axios
-            .post("/api/user/signup", data)
+            .post("/api/users/signup", data)
             .then(resp => console.log(resp))
             .catch(error => console.log(error));
     };

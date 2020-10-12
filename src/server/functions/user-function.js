@@ -38,17 +38,14 @@ const startingFreeTrees = async (req, res) => {
                         owner: userJustCreated._id,
                         nickname: treeName,
                     },
-                );
-                // .then(() =>
-                //     res.json({message: "Tree allocated"}),
-                // )
-                // .catch(error => res.status(500).json({message: error}));
-                logFunctions.writeIntoLog(
-                    userJustCreated._id,
-                    "has recieved",
-                    resp[randomArrayKey]._id,
-                    res,
-                );
+                ).then(() => {
+                    logFunctions.writeIntoLog(
+                        userJustCreated._id,
+                        "has recieved",
+                        resp[randomArrayKey]._id,
+                        res,
+                    );
+                });
             }
         })
         .catch(error => res.status(500).json({message: error}));

@@ -8,9 +8,9 @@
 
 import express from "express";
 import path from "path";
-// import { doesNotMatch } from "assert";
+import leavesMiddleware from "./middlewares/leaves-over-time";
 
-// import Tree from "./model/tree";
+import Tree from "./model/tree";
 
 const mongoose = require("mongoose");
 const routesUsers = require("./routes/user-routes");
@@ -21,6 +21,9 @@ const bodyParser = require("body-parser");
 const {APP_PORT} = process.env;
 
 const app = express();
+global.lastRequestDate = Date.now();
+global.timeLeftFromPreviousRequests = 0; //between 0 and 15min
+global.quarterSinceLastCalc = 1;
 
 app.use(express.static(path.resolve(__dirname, "../../bin/client")));
 
@@ -50,18 +53,19 @@ mongoose
 
 app.use(bodyParser.json());
 
+app.use("/api/", leavesMiddleware.leavesOverTime);
 app.use("/api/users", routesUsers);
 app.use("/api/trees", routesTrees);
 app.use("/api/logs", routesLogs);
 
 // DATA TREE COLLECTION MODIFIERS
 
-// Tree.find({owner: "5f7c26b274e4c0010287dffe"})
-//     // .populate("comments.user")
-//     .then(resp => console.log(resp))
-//     .catch(error => {
-//         console.log(error);
-//     });
+Tree.find({owner: "5f845ef875a6600616e4faa9"})
+    // .populate("comments.user")
+    .then(resp => console.log(resp))
+    .catch(error => {
+        console.log(error);
+    });
 
 // Tree.update({}, {$set: {former_owners: []}}, {multi: true})
 // .then(resp => {
