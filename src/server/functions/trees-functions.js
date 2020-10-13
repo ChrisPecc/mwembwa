@@ -2,6 +2,7 @@ import Tree from "../model/tree";
 import User from "../model/users";
 import nameFunctions from "./random-name";
 import logFunctions from "./log-functions";
+const {validationResult} = require("express-validator");
 
 // const mongoose = require("mongoose");
 const calcTreeValue = tree => {
@@ -124,6 +125,10 @@ const displayOneTree = (req, res) => {
 };
 
 const addComment = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
     const commentingUser = await User.findOne({_id: req.body.user_id});
@@ -163,6 +168,10 @@ const addComment = async (req, res) => {
 };
 
 const buyOneTree = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
     const buyingUser = await User.findOne({_id: req.body.user_id});
@@ -296,6 +305,10 @@ const buyOneTree = async (req, res) => {
 };
 
 const lockOneTree = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
     const requestUser = await User.findOne({_id: req.body.user_id});
@@ -304,7 +317,6 @@ const lockOneTree = async (req, res) => {
     let sumAreaTreeValues = 0;
     const arrayPlayers = [];
     let requestUserTreeValues = 0;
-    let treeLockingCost;
 
     if (!targetTree) {
         return res.status(404).json({message: "This tree does not exist"});
@@ -319,7 +331,7 @@ const lockOneTree = async (req, res) => {
         });
     }
 
-    treeLockingCost = await Tree.find({
+    const treeLockingCost = await Tree.find({
         location: {
             $near: {
                 $geometry: {
