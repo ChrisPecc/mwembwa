@@ -133,10 +133,12 @@
     overflow: auto;
 }
 .singleComment{
-    line-height: 0px;
+    line-height: 1.5;
+    
 }
 .singleComment hr{
     width: 60%;
+    border: grey 1px solid;
 }
 .submit{
     border-top: 1px solid #8BBC55;

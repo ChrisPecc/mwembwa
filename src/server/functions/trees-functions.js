@@ -81,7 +81,7 @@ const calcTreeValueOwnedByOthers = (
 const displayAllTrees = (req, res) => {
     console.log("bonjour");
     Tree.find()
-        // .populate("comments.user")
+        .populate("owner")
         .then(resp => res.status(200).json({message: resp}))
         .catch(error => res.status(500).json({message: error}));
 };

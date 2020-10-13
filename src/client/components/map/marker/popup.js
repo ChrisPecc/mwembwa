@@ -21,11 +21,16 @@ const SinglePopup = ({
     priceTree,
     completName,
     ownerUsername,
+    ownerId,
     isLock,
     id,
     isLoading,
     comments,
+    openPopup,
+    userId,
+    colorUpdate,
 }) => {
+    console.log("popup", comments);
     const [stateOnglets, setStateOnglets] = useState(1);
     const [isShown, setIsShown] = useState(false);
     const [lock, setLock] = useState([]);
@@ -35,48 +40,41 @@ const SinglePopup = ({
     const goInfo = () => {
         setStateOnglets(1);
     };
-
     const goComment = () => {
         setStateOnglets(2);
     };
-
     const openModal = () => {
         setStateOnglets(3);
         setIsShown(false);
     };
-
     const showHover = () => {
         setIsShown(true);
     };
-
     const closeHover = () => {
         setIsShown(false);
     };
 
-    const postLock = (id, lock) => {
-        axios
-            .post(`/api/tree/lock/${id}/${lock}`)
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    const data = {user_id: userId};
 
+    const postLock = id => {
+        axios
+            .post(`http://localhost/api/trees/lock/${id}`, data)
+            .then(() => setTimeout(openPopup(id), 2000))
+            .catch(err => console.log(err));
+    };
     const lockTree = () => {
         setLock(!lock);
-        postLock(id, lock);
+        postLock(id);
     };
 
     const buyTree = id => {
-        axios({
-            method: "post",
-            url: `http://localhost/api/trees/buy/${id}`,
-            data: {
-                buyOneTree: true,
-            },
-        });
+        axios
+            .post(`http://localhost/api/trees/buy/${id}`, data)
+            .then(
+                () => setTimeout(openPopup(id), 2000),
+                () => setTimeout(colorUpdate(id), 5000),
+            )
+            .catch(err => console.log(err));
     };
 
     if (isLock === true) {
@@ -86,6 +84,8 @@ const SinglePopup = ({
     }
     // console.log(`username owner popup.js ${ownerUsername}`);
     // console.log(`nickname tree popup.js ${name}`);
+    // console.log(postLock);
+
     return (
         <>
             <Popup>
@@ -157,14 +157,19 @@ const SinglePopup = ({
                                     <div className={"button_prix"}>
                                         <button
                                             className={`buy ${
-                                                isLock === true ? "lock" : " "
+                                                isLock === true ||
+                                                ownerId === userId
+                                                    ? "lock"
+                                                    : " "
                                             }`}
                                             onClick={() => {
                                                 buyTree(id);
                                             }}
                                             // eslint-disable-next-line react/button-has-type
                                             type={"submit"}>
-                                            Buy for {priceTree}
+                                            {ownerId === userId
+                                                ? `It is yours`
+                                                : `Buy for ${priceTree}`}
                                             <img
                                                 src={feuille}
                                                 width={"20px"}
@@ -177,23 +182,32 @@ const SinglePopup = ({
                                 <div className={"contentComment"}>
                                     <div className={"comment"}>
                                         <div className={"comments"}>
-                                            {comments === "No comments yet" ? (
+                                            {comments.length === 0 ? (
                                                 <div>
                                                     <p>No comments yet</p>
                                                 </div>
                                             ) : (
-                                                comments.map(e => {
+                                                comments.map(eComment => (
+                                                    // console.log(
+                                                    //     eComment.user.username,
+                                                    // );
                                                     <div
+                                                        key={eComment._id}
                                                         className={
                                                             "singleComment"
                                                         }>
                                                         <h6>
-                                                            {e.user.username}
+                                                            {
+                                                                eComment.user
+                                                                    .username
+                                                            }
                                                         </h6>
-                                                        <p>{e.comment}</p>
+                                                        <p>
+                                                            {eComment.comment}
+                                                        </p>
                                                         <hr />
-                                                    </div>;
-                                                })
+                                                    </div>
+                                                ))
                                             )}
                                         </div>
                                     </div>

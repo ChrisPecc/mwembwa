@@ -9,7 +9,7 @@ import "./css/map-view.css";
 import ModalRegleJeu from "./modal-regle-jeu/regle-jeu";
 
 const MainMap = () => {
-    const coordinateCenterMap = [50.65145, 5.57739];
+    const coordinateCenterMap = [50.651474, 5.5805];
 
     const [trees, setTrees] = useState([]);
 
@@ -37,13 +37,12 @@ const MainMap = () => {
     const wrapperSetTrees = treesUpdated => {
         setTrees(treesUpdated);
     };
-    // console.log(trees);
 
     return (
         <>
             <Map
                 center={[coordinateCenterMap[0], coordinateCenterMap[1]]}
-                zoom={18}
+                zoom={20}
                 minZoom={15}>
                 <TileLayer
                     url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
