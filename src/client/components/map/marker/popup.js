@@ -28,9 +28,8 @@ const SinglePopup = ({
     comments,
     openPopup,
     userId,
-    colorUpdate,
 }) => {
-    console.log("popup", comments);
+    // console.log("popup", comments);
     const [stateOnglets, setStateOnglets] = useState(1);
     const [isShown, setIsShown] = useState(false);
     const [lock, setLock] = useState([]);
@@ -70,10 +69,7 @@ const SinglePopup = ({
     const buyTree = id => {
         axios
             .post(`http://localhost/api/trees/buy/${id}`, data)
-            .then(
-                () => setTimeout(openPopup(id), 2000),
-                () => setTimeout(colorUpdate(id), 5000),
-            )
+            .then(() => setTimeout(openPopup(id), 2000))
             .catch(err => console.log(err));
     };
 

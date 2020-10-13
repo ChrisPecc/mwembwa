@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 import React, {useState} from "react";
@@ -8,15 +10,23 @@ import axios from "axios";
 
 const SingleMarker = ({id, tree}) => {
     const [ownerUsername, setOwnerUsername] = useState([]);
-    const [ownerId, setOwnerId] = useState([]);
     const [treeUpdated, setTreeUpdate] = useState([]);
     const [priceTree, setPriceTree] = useState([]);
     const [isLoading, setLoading] = useState(true);
-    const [comments, setComments] = useState();
+    const [ownerId, setOwnerId] = useState([]);
+    const [comments, setComments] = useState([]);
     const [isLock, setIsLock] = useState([]);
-    const [colorTree, setColorTree] = useState([]);
+    const [markerColor, setMarkerColor] = useState([]);
+    // const [colorTree, setColorTree] = useState([]);
 
     const userId = "5f7c68b3942d3e0300ab216f";
+    const basicTreeColor = "#8BBC55";
+
+    if (tree.owner) {
+        setMarkerColor(tree.owner.color);
+    } else {
+        setMarkerColor(basicTreeColor);
+    }
 
     const openPopup = id => {
         // const currentUser = localStorage.getItem("currentUser")
@@ -31,6 +41,7 @@ const SingleMarker = ({id, tree}) => {
                 setIsLock(responses.data.message.is_locked);
                 setComments(responses.data.message.comments);
                 setPriceTree(responses.data.treeValueOwnedByOthers);
+                setMarkerColor(responses.data.message.owner.color);
 
                 if (responses.data.message.owner === null) {
                     setOwnerUsername("No owner yet");
@@ -47,25 +58,13 @@ const SingleMarker = ({id, tree}) => {
                 console.log(err);
             });
     };
-    const colorUpdate = id => {
-        axios
-            .get(`http://localhost/api/trees/one/${id}/${userId}`)
-            .then(response => {
-                setColorTree(response.data.message);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    };
+
     // console.log(`username owner marker.js ${ownerUsername}`);
     // console.log(`price tree ${priceTree}`);
     // console.log(treeUpdated);
     // console.log(isLock);
     // console.log(comments);
 
-    const markerColor = tree.owner
-        ? tree.owner.color || colorTree.owner.color
-        : "#8BBC55";
     const iconSvg = `<?xml version="1.0" encoding="UTF-8"?>
         <svg enable-background="new 0 0 512.001 512.001" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
             <path d="m485.27 240.53c0-35.798-21.77-66.511-52.792-79.623 5.478-10.59 8.592-22.602 8.592-35.348 0-42.561-34.502-77.063-77.063-77.063-12.126 0-23.593 2.809-33.799 7.798-9.068-32.469-38.847-56.296-74.209-56.296s-65.14 23.827-74.209 56.296c-10.206-4.99-21.673-7.798-33.799-7.798-42.561 0-77.063 34.502-77.063 77.063 0 12.746 3.113 24.758 8.592 35.348-31.022 13.113-52.792 43.825-52.792 79.623 0 46.393 36.576 84.196 82.459 86.265 6.397 23.17 31.1 40.443 60.622 40.443 16.732 0 31.91-5.557 43.095-14.581 11.186 9.024 26.364 14.581 43.095 14.581s31.91-5.557 43.095-14.581c11.186 9.024 26.364 14.581 43.095 14.581 29.522 0 54.225-17.273 60.622-40.444 45.883-2.069 82.459-39.871 82.459-86.264z" fill="${markerColor}"/>
@@ -109,7 +108,6 @@ const SingleMarker = ({id, tree}) => {
                 comments={comments}
                 openPopup={openPopup}
                 userId={userId}
-                colorUpdate={colorUpdate}
             />
         </Marker>
     );
