@@ -66,7 +66,10 @@ const leavesOverTime = async (req, res, next) => {
         console.log(`${user.username} nla ${newLeavesAmount}`);
         // console.log("global quarter " + quarterSinceLastCalc)
         // console.log(user.username + " quarter count "+ quarterCountLoop)
-        User.updateOne({_id: user._id}, {leaves_count: newLeavesAmount})
+        User.updateOne(
+            {_id: user._id},
+            {leaves_count: Math.floor(newLeavesAmount)},
+        )
             .then(console.log("updated"))
             .catch(error => res.status(500).json({message: error}));
     }
