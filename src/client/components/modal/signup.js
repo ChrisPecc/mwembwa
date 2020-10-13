@@ -1,5 +1,6 @@
 import React from "react";
-// import axios from "axios";
+import axios from "axios";
+import {useForm} from "react-hook-form";
 // import {createPortal} from "react-dom";
 // import Button from "../game-page/button";
 
@@ -7,12 +8,15 @@ const Signup = ({show = false}) => {
     if (!show) {
         return null;
     }
-    // const submitValues = data => {
-    //     axios
-    //         .post("/api/user/signup", data)
-    //         .then(resp => console.log(resp))
-    //         .catch(error => console.log(error));
-    // };
+    const {register, handleSubmit} = useForm();
+
+    const submitValues = data => {
+        console.log({data});
+        axios
+            .post("/api/users/signup", data)
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error));
+    };
     const containerStyles = {
         position: "fixed",
         top: 0,
@@ -28,19 +32,34 @@ const Signup = ({show = false}) => {
         flexdirection: "column",
     };
     return (
-        <div style={containerStyles}>
+        <div style={containerStyles} onSubmit={handleSubmit(submitValues)}>
             <form>
                 <label>{"username"}</label>
                 <br />
-                <input name={"username"} type={"text"} className={"username"} />
+                <input
+                    name={"username"}
+                    type={"text"}
+                    className={"username"}
+                    ref={register}
+                />
                 <br />
                 <label>{"email"}</label>
                 <br />
-                <input name={"email"} type={"email"} className={"email"} />
+                <input
+                    name={"email"}
+                    type={"email"}
+                    className={"email"}
+                    ref={register}
+                />
                 <br />
                 <label>{"password"}</label>
                 <br />
-                <input name={"password"} type={"text"} className={"password"} />
+                <input
+                    name={"password"}
+                    type={"password"}
+                    className={"password"}
+                    ref={register}
+                />
                 <br /> <br />
                 <input type={"submit"} value={"submit"} />
             </form>
