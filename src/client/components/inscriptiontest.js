@@ -7,6 +7,7 @@ const Test = () => {
     const {register, handleSubmit} = useForm();
 
     const submitValues = data => {
+        console.log(data);
         axios
             .post("/api/users/signup", data)
             .then(resp => console.log(resp))

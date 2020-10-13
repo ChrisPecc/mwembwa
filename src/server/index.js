@@ -21,9 +21,12 @@ const bodyParser = require("body-parser");
 const {APP_PORT} = process.env;
 
 const app = express();
-global.lastRequestDate = Date.now();
-global.timeLeftFromPreviousRequests = 0; //between 0 and 15min
-global.quarterSinceLastCalc = 1;
+app.set("lastRequestDate", Date.now());
+// global.lastRequestDate = Date.now();
+app.set("timeLeftFromPreviousRequests", 0);
+// global.timeLeftFromPreviousRequests = 0; //between 0 and 15min
+app.set("quarterSinceLastCalc", 0);
+// global.quarterSinceLastCalc = 1;
 
 app.use(express.static(path.resolve(__dirname, "../../bin/client")));
 
@@ -60,7 +63,7 @@ app.use("/api/logs", routesLogs);
 
 // DATA TREE COLLECTION MODIFIERS
 
-Tree.find({owner: "5f845ef875a6600616e4faa9"})
+Tree.find({_id: "5f64857102495a3ea0b26004"})
     // .populate("comments.user")
     .then(resp => console.log(resp))
     .catch(error => {
