@@ -93,7 +93,7 @@ const displayArea = (req, res) => {
                     type: "Point",
                     coordinates: [req.body.lon, req.body.lat],
                 },
-                $maxDistance: req.body.zoom * 10,
+                $maxDistance: (30 - req.body.zoom) * 10,
             },
         },
     })
