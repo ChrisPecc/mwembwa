@@ -86,14 +86,20 @@ const displayAllTrees = (req, res) => {
 };
 
 const displayArea = (req, res) => {
+    console.log(
+        `ccm ${req.body.coordinateCenterMap[1]} ${req.body.coordinateCenterMap[0]}`,
+    );
     Tree.find({
         location: {
             $near: {
                 $geometry: {
                     type: "Point",
-                    coordinates: [req.body.lon, req.body.lat],
+                    coordinates: [
+                        req.body.coordinateCenterMap[1],
+                        req.body.coordinateCenterMap[0],
+                    ],
                 },
-                $maxDistance: (30 - req.body.zoom) * 10,
+                $maxDistance: (30 - req.body.zoomMap) * 10,
             },
         },
     })
