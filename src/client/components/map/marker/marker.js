@@ -8,7 +8,7 @@ import L from "leaflet";
 import SinglePopup from "./popup";
 import axios from "axios";
 
-const SingleMarker = ({id, tree}) => {
+const SingleMarker = ({id, tree, positionActuel}) => {
     const [ownerUsername, setOwnerUsername] = useState([]);
     const [treeUpdated, setTreeUpdate] = useState([]);
     const [priceTree, setPriceTree] = useState([]);
@@ -62,7 +62,7 @@ const SingleMarker = ({id, tree}) => {
 
     // console.log(`username owner marker.js ${ownerUsername}`);
     // console.log(`price tree ${priceTree}`);
-    console.log(treeUpdated);
+    // console.log(treeUpdated);
     // console.log(isLock);
     // console.log(comments);
 
@@ -111,6 +111,7 @@ const SingleMarker = ({id, tree}) => {
                 comments={comments}
                 openPopup={openPopup}
                 userId={userId}
+                positionActuel={positionActuel}
             />
         </Marker>
     );

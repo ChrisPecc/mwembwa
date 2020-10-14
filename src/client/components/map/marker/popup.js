@@ -4,7 +4,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-key */
 import React, {useState} from "react";
-import {useForm} from "react-hook-form";
+// import {useForm} from "react-hook-form";
 import {Popup} from "react-leaflet";
 import IMG from "../imgmarker/marker.png";
 import feuille from "../imgmarker/feuille.png";
@@ -29,12 +29,13 @@ const SinglePopup = ({
     comments,
     openPopup,
     userId,
+    positionActuel,
 }) => {
     // console.log("popup", comments);
     const [stateOnglets, setStateOnglets] = useState(1);
     const [isShown, setIsShown] = useState(false);
     const [lock, setLock] = useState([]);
-    const {registerComment, handleSubmitComment} = useForm();
+    // const {registerComment, handleSubmitComment} = useForm();
 
     let iconLock;
 
@@ -71,7 +72,10 @@ const SinglePopup = ({
     const buyTree = id => {
         axios
             .post(`http://localhost/api/trees/buy/${id}`, data)
-            .then(() => setTimeout(openPopup(id), 2000))
+            .then(
+                () => setTimeout(openPopup(id), 2000),
+                () => setTimeout(positionActuel(), 5000),
+            )
             .catch(err => console.log(err));
     };
 
@@ -84,16 +88,16 @@ const SinglePopup = ({
     // console.log(`nickname tree popup.js ${name}`);
     // console.log(postLock);
 
-    const submitComment = (userId, data) => {
-        console.log(data);
-        axios
-            .post(`/api/users/comment/${userId}`, data)
-            .then(
-                // resp => console.log(resp)
-                () => setTimeout(openPopup(id), 2000),
-            )
-            .catch(error => console.log(error));
-    };
+    // const submitComment = (userId, data) => {
+    //     console.log(data);
+    //     axios
+    //         .post(`/api/users/comment/${userId}`, data)
+    //         .then(
+    //             // resp => console.log(resp)
+    //             () => setTimeout(openPopup(id), 2000),
+    //         )
+    //         .catch(error => console.log(error));
+    // };
 
     return (
         <>
@@ -222,12 +226,14 @@ const SinglePopup = ({
                                     </div>
                                     <div className={"submit"}>
                                         <form
-                                            onSubmit={handleSubmitComment(
-                                                submitComment,
-                                            )}>
+                                        // onSubmit={handleSubmitComment(
+                                        //     submitComment,
+                                        // )}
+                                        // eslint-disable-next-line react/jsx-closing-bracket-location
+                                        >
                                             <textarea
                                                 className={"textArea"}
-                                                ref={registerComment}
+                                                // ref={registerComment}
                                             />
                                             <button
                                                 className={"submitComment"}
