@@ -62,7 +62,7 @@ const SingleMarker = ({id, tree}) => {
 
     // console.log(`username owner marker.js ${ownerUsername}`);
     // console.log(`price tree ${priceTree}`);
-    // console.log(treeUpdated);
+    console.log(treeUpdated);
     // console.log(isLock);
     // console.log(comments);
 

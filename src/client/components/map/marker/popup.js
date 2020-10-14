@@ -4,6 +4,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-key */
 import React, {useState} from "react";
+import {useForm} from "react-hook-form";
 import {Popup} from "react-leaflet";
 import IMG from "../imgmarker/marker.png";
 import feuille from "../imgmarker/feuille.png";
@@ -33,6 +34,7 @@ const SinglePopup = ({
     const [stateOnglets, setStateOnglets] = useState(1);
     const [isShown, setIsShown] = useState(false);
     const [lock, setLock] = useState([]);
+    const {registerComment, handleSubmitComment} = useForm();
 
     let iconLock;
 
@@ -81,6 +83,17 @@ const SinglePopup = ({
     // console.log(`username owner popup.js ${ownerUsername}`);
     // console.log(`nickname tree popup.js ${name}`);
     // console.log(postLock);
+
+    const submitComment = (userId, data) => {
+        console.log(data);
+        axios
+            .post(`/api/users/comment/${userId}`, data)
+            .then(
+                // resp => console.log(resp)
+                () => setTimeout(openPopup(id), 2000),
+            )
+            .catch(error => console.log(error));
+    };
 
     return (
         <>
@@ -208,13 +221,21 @@ const SinglePopup = ({
                                         </div>
                                     </div>
                                     <div className={"submit"}>
-                                        <textarea className={"textArea"} />
-                                        <button
-                                            className={"submitComment"}
-                                            // eslint-disable-next-line react/button-has-type
-                                            type={"submite"}>
-                                            Submit
-                                        </button>
+                                        <form
+                                            onSubmit={handleSubmitComment(
+                                                submitComment,
+                                            )}>
+                                            <textarea
+                                                className={"textArea"}
+                                                ref={registerComment}
+                                            />
+                                            <button
+                                                className={"submitComment"}
+                                                // eslint-disable-next-line react/button-has-type
+                                                type={"submite"}>
+                                                Submit
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             ) : (

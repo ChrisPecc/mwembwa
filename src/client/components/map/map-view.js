@@ -10,6 +10,7 @@ import ModalRegleJeu from "./modal-regle-jeu/regle-jeu";
 
 const MainMap = () => {
     const coordinateCenterMap = [50.651474, 5.5805];
+    let zoomMap;
 
     const [trees, setTrees] = useState([]);
 
@@ -24,14 +25,15 @@ const MainMap = () => {
             });
     };
 
-    // const positionActuel = p => {
-    //     coordinateCenterMap = p.center;
-    //     axios
-    //         .post("url", coordinateCenterMap)
-    //         .then()
-    //         .catch(err => console.log(err));
-    //     // console.log(e.center);
-    // };
+    const positionActuel = p => {
+        coordinateCenterMap = p.center;
+        zoomMap = p.zoom;
+        axios
+            .post("url", coordinateCenterMap, zoomMap)
+            .then()
+            .catch(err => console.log(err));
+        // console.log(e.center);
+    };
 
     useEffect(() => {
         getTreesByCoordinateCenterMap();
@@ -46,10 +48,10 @@ const MainMap = () => {
             <Map
                 center={[coordinateCenterMap[0], coordinateCenterMap[1]]}
                 zoom={18}
-                minZoom={15}>
-                {/* onViewportChanged={p => { 
+                minZoom={15}
+                onViewportChanged={p => {
                     positionActuel(p);
-                }}*/}
+                }}>
                 <TileLayer
                     url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
                     attribution={
