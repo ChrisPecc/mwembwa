@@ -8,10 +8,11 @@ const {body} = require("express-validator");
 treerouter.get("/all", treesFunctions.displayAllTrees);
 treerouter.get("/one/:id/:userid", treesFunctions.displayOneTree);
 
+treerouter.post("/area", treesFunctions.displayArea);
 treerouter.post(
     "/comment/:id",
     [body("user_id").trim().escape()],
-    auth.authMiddleware,
+    // auth.authMiddleware,
     treesFunctions.addComment,
 );
 treerouter.post(

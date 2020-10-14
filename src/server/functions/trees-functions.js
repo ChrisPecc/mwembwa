@@ -85,6 +85,25 @@ const displayAllTrees = (req, res) => {
         .catch(error => res.status(500).json({message: error}));
 };
 
+const displayArea = (req, res) => {
+    Tree.find({
+        location: {
+            $near: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: [req.body.lon, req.body.lat],
+                },
+                $maxDistance: req.body.zoom * 10,
+            },
+        },
+    })
+        .then(resp => {
+            console.log(`resp.length: ${resp.length}`);
+            res.status(200).json({message: resp});
+        })
+        .catch(error => res.status(500).json({message: error}));
+};
+
 const displayOneTree = (req, res) => {
     Tree.findOne({_id: req.params.id})
         .populate("former_owners.username")
@@ -414,6 +433,7 @@ const lockOneTree = async (req, res) => {
 
 module.exports = {
     displayAllTrees,
+    displayArea,
     addComment,
     displayOneTree,
     buyOneTree,
