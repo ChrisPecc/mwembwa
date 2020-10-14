@@ -24,9 +24,12 @@ const MainMap = () => {
             });
     };
 
-    // const positionActuel = e => {
-    //     coordinateCenterMap = e.center;
-    //     getTreesByCoordinateCenterMap(coordinateCenterMap);
+    // const positionActuel = p => {
+    //     coordinateCenterMap = p.center;
+    //     axios
+    //         .post("url", coordinateCenterMap)
+    //         .then()
+    //         .catch(err => console.log(err));
     //     // console.log(e.center);
     // };
 
@@ -42,8 +45,11 @@ const MainMap = () => {
         <>
             <Map
                 center={[coordinateCenterMap[0], coordinateCenterMap[1]]}
-                zoom={20}
+                zoom={18}
                 minZoom={15}>
+                {/* onViewportChanged={p => { 
+                    positionActuel(p);
+                }}*/}
                 <TileLayer
                     url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
                     attribution={

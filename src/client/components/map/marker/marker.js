@@ -16,17 +16,18 @@ const SingleMarker = ({id, tree}) => {
     const [ownerId, setOwnerId] = useState([]);
     const [comments, setComments] = useState([]);
     const [isLock, setIsLock] = useState([]);
-    const [markerColor, setMarkerColor] = useState([]);
+    // const [markerColor, setMarkerColor] = useState([]);
     // const [colorTree, setColorTree] = useState([]);
 
-    const userId = "5f7c68b3942d3e0300ab216f";
+    const userId = "5f72ea8167dbd200bb433a13";
+    // elisa : "5f7c68b3942d3e0300ab216f"
     const basicTreeColor = "#8BBC55";
 
-    if (tree.owner) {
-        setMarkerColor(tree.owner.color);
-    } else {
-        setMarkerColor(basicTreeColor);
-    }
+    // if (tree.owner) {
+    //     setMarkerColor(tree.owner.color);
+    // } else {
+    //     setMarkerColor(basicTreeColor);
+    // }
 
     const openPopup = id => {
         // const currentUser = localStorage.getItem("currentUser")
@@ -41,7 +42,7 @@ const SingleMarker = ({id, tree}) => {
                 setIsLock(responses.data.message.is_locked);
                 setComments(responses.data.message.comments);
                 setPriceTree(responses.data.treeValueOwnedByOthers);
-                setMarkerColor(responses.data.message.owner.color);
+                // setMarkerColor(responses.data.message.owner.color);
 
                 if (responses.data.message.owner === null) {
                     setOwnerUsername("No owner yet");
@@ -65,7 +66,7 @@ const SingleMarker = ({id, tree}) => {
     // console.log(isLock);
     // console.log(comments);
 
-    // const markerColor = tree.owner ? tree.owner.color : basicTreeColor;
+    const markerColor = tree.owner ? tree.owner.color : basicTreeColor;
 
     const iconSvg = `<?xml version="1.0" encoding="UTF-8"?>
         <svg enable-background="new 0 0 512.001 512.001" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
