@@ -36,28 +36,35 @@ const leavesOverTime = async (req, res, next) => {
         return treesOfUser;
     });
 
-    const treesOfUser = await Promise.all(promises);
-    console.log(treesOfUser);
+    const userTrees = await Promise.all(promises);
+    console.log(`usertree${userTrees[2][0]}`);
 
     // users.forEach(async user =>
-    for (const user of users) {
+    for (const [i, element] of users.entries()) {
         let treesValue = 0;
-        let newLeavesAmount = user.leaves_count;
-        console.log(`${user.username}'s leave count ${newLeavesAmount}`);
+        let newLeavesAmount = element.leaves_count;
+        console.log(`${element.username}'s leave count ${newLeavesAmount}`);
         let quarterCountLoop = quarterSinceLastCalc;
         // eslint-disable-next-line no-await-in-loop
-        const userTrees = await Tree.find({owner: user._id});
+        // const userTrees = await Tree.find({owner: user._id});
         // console.log("ut " + userTrees);
 
         // userTrees.forEach(treeElement =>
-        for (const treeElement of userTrees) {
-            treesValue = treesValue + treesFunctions.calcTreeValue(treeElement);
+        for (let j = 0; j < userTrees[i].length; j++) {
+            if (element._id.toString() !== userTrees[i][j].owner.toString()) {
+                console.log("there is an error");
+                return res
+                    .status(500)
+                    .json({message: "ower and treeId don't match"});
+            }
+            treesValue =
+                treesValue + treesFunctions.calcTreeValue(userTrees[i][j]);
             console.log(`treesvalues ${treesValue}`);
         }
-        for (let i = 0; i < numberOfActions; i++) {
+        for (let k = 0; k < numberOfActions; k++) {
             newLeavesAmount = newLeavesAmount + treesValue;
             console.log(
-                `${user.username} nla after ${i} turn ${newLeavesAmount}`,
+                `${element.username} nla after ${k} turn ${newLeavesAmount}`,
             );
             quarterCountLoop++;
             if (quarterCountLoop === 4) {
@@ -65,16 +72,16 @@ const leavesOverTime = async (req, res, next) => {
                 quarterCountLoop = 0;
             }
 
-            if (i === numberOfActions - 1) {
+            if (k === numberOfActions - 1) {
                 // console.log("qcloop " + quarterCountLoop)
-                console.log(`${user.username} new value ${newLeavesAmount}`);
+                console.log(`${element.username} new value ${newLeavesAmount}`);
             }
         }
-        console.log(`${user.username} nla ${newLeavesAmount}`);
+        console.log(`${element.username} nla ${newLeavesAmount}`);
         // console.log("global quarter " + quarterSinceLastCalc)
         // console.log(user.username + " quarter count "+ quarterCountLoop)
         User.updateOne(
-            {_id: user._id},
+            {_id: element._id},
             {leaves_count: Math.floor(newLeavesAmount)},
         )
             .then(console.log("updated"))
@@ -93,6 +100,7 @@ const leavesOverTime = async (req, res, next) => {
     req.app.set("lastRequestDate", newRequestDate);
     console.log(`lnrd ${lastRequestDate}`);
     next();
+    return "done";
 };
 
 module.exports = {leavesOverTime};
