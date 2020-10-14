@@ -31,16 +31,23 @@ const leavesOverTime = async (req, res, next) => {
 
     const users = await User.find();
     // console.log (users)
+    const promises = await users.map(async user => {
+        const treesOfUser = await Tree.find({owner: user._id}).exec();
+        return treesOfUser;
+    });
+
+    const treesOfUser = await Promise.all(promises);
+    console.log(treesOfUser);
 
     // users.forEach(async user =>
     for (const user of users) {
         let treesValue = 0;
         let newLeavesAmount = user.leaves_count;
         console.log(`${user.username}'s leave count ${newLeavesAmount}`);
+        let quarterCountLoop = quarterSinceLastCalc;
         // eslint-disable-next-line no-await-in-loop
         const userTrees = await Tree.find({owner: user._id});
         // console.log("ut " + userTrees);
-        let quarterCountLoop = quarterSinceLastCalc;
 
         // userTrees.forEach(treeElement =>
         for (const treeElement of userTrees) {

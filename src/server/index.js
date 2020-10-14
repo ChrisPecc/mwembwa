@@ -10,7 +10,7 @@ import express from "express";
 import path from "path";
 import leavesMiddleware from "./middlewares/leaves-over-time";
 
-import Tree from "./model/tree";
+// import Tree from "./model/tree";
 
 const mongoose = require("mongoose");
 const routesUsers = require("./routes/user-routes");
@@ -63,12 +63,12 @@ app.use("/api/logs", routesLogs);
 
 // DATA TREE COLLECTION MODIFIERS
 
-Tree.find({_id: "5f64857102495a3ea0b26004"})
-    // .populate("comments.user")
-    .then(resp => console.log(resp))
-    .catch(error => {
-        console.log(error);
-    });
+// Tree.find({_id: "5f64857102495a3ea0b26004"})
+//     // .populate("comments.user")
+//     .then(resp => console.log(resp))
+//     .catch(error => {
+//         console.log(error);
+//     });
 
 // Tree.update({}, {$set: {former_owners: []}}, {multi: true})
 // .then(resp => {
