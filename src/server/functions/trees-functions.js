@@ -3,6 +3,7 @@ import Tree from "../model/tree";
 import User from "../model/users";
 import nameFunctions from "./random-name";
 import logFunctions from "./log-functions";
+const {validationResult} = require("express-validator");
 
 // const mongoose = require("mongoose");
 const calcTreeValue = tree => {
@@ -29,33 +30,33 @@ const calcTreeValueOwnedByOthers = (
     let otherPlayersTreeValues = 0;
     let playerTreeValues = 0;
     let treeValue;
-    console.log(userId);
+    // console.log(userId);
 
     if (targetTree.owner === null) {
         treeValue = basicTreeValue;
     } else {
         treeList.forEach(resp1 => {
-            console.log(`treeId ${resp1._id}`);
-            console.log(`owner ${resp1.owner}`);
-            console.log(`target user ${userId}`);
+            // console.log(`treeId ${resp1._id}`);
+            // console.log(`owner ${resp1.owner}`);
+            // console.log(`target user ${userId}`);
             if (resp1.owner === null) {
-                console.log("owner=null case");
+                // console.log("owner=null case");
                 totalTreeCount++;
             } else if (resp1._id.toString() === targetTree._id.toString()) {
-                console.log("cas c'est l'abre d'achat");
+                // console.log("cas c'est l'abre d'achat");
                 targetPlayerTreeCount++;
             } else if (resp1.owner.toString() === targetTree.owner.toString()) {
-                console.log("owner= possédé par l'owner du target tree");
+                // console.log("owner= possédé par l'owner du target tree");
                 targetPlayerTreeValues =
                     targetPlayerTreeValues + calcTreeValue(resp1);
                 targetPlayerTreeCount = targetPlayerTreeCount + 1;
                 totalTreeCount++;
             } else if (resp1.owner.toString() === userId.toString()) {
-                console.log("possédé par l'acheteur");
+                // console.log("possédé par l'acheteur");
                 playerTreeValues = playerTreeValues + calcTreeValue(resp1);
                 totalTreeCount++;
             } else {
-                console.log("possédé par d'autres");
+                // console.log("possédé par d'autres");
                 otherPlayersTreeValues =
                     otherPlayersTreeValues + calcTreeValue(resp1);
                 totalTreeCount++;
@@ -86,6 +87,31 @@ const displayAllTrees = (req, res) => {
         .catch(error => res.status(500).json({message: error}));
 };
 
+const displayArea = (req, res) => {
+    console.log(
+        `ccm ${req.body.coordinateCenterMap[1]} ${req.body.coordinateCenterMap[0]}`,
+    );
+    Tree.find({
+        location: {
+            $near: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: [
+                        req.body.coordinateCenterMap[1],
+                        req.body.coordinateCenterMap[0],
+                    ],
+                },
+                $maxDistance: (30 - req.body.zoomMap) * 10,
+            },
+        },
+    })
+        .then(resp => {
+            console.log(`resp.length: ${resp.length}`);
+            res.status(200).json({message: resp});
+        })
+        .catch(error => res.status(500).json({message: error}));
+};
+
 const displayOneTree = (req, res) => {
     console.log("ça va?");
     Tree.findOne({_id: req.params.id})
@@ -93,7 +119,7 @@ const displayOneTree = (req, res) => {
         .populate("owner")
         .populate("comments.user")
         .then(async resp => {
-            console.log(resp);
+            // console.log(resp);
             const basicTreeValue = calcTreeValue(resp);
             await Tree.find({
                 location: {
@@ -127,6 +153,10 @@ const displayOneTree = (req, res) => {
 };
 
 const addComment = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
     const commentingUser = await User.findOne({_id: req.body.user_id});
@@ -166,6 +196,10 @@ const addComment = async (req, res) => {
 };
 
 const buyOneTree = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
     const buyingUser = await User.findOne({_id: req.body.user_id});
@@ -299,6 +333,10 @@ const buyOneTree = async (req, res) => {
 };
 
 const lockOneTree = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     const targetTree = await Tree.findOne({_id: req.params.id});
     // console.log(targetTree);
     const requestUser = await User.findOne({_id: req.body.user_id});
@@ -307,7 +345,6 @@ const lockOneTree = async (req, res) => {
     let sumAreaTreeValues = 0;
     const arrayPlayers = [];
     let requestUserTreeValues = 0;
-    let treeLockingCost;
 
     if (!targetTree) {
         return res.status(404).json({message: "This tree does not exist"});
@@ -322,7 +359,7 @@ const lockOneTree = async (req, res) => {
         });
     }
 
-    treeLockingCost = await Tree.find({
+    const treeLockingCost = await Tree.find({
         location: {
             $near: {
                 $geometry: {
@@ -405,8 +442,10 @@ const lockOneTree = async (req, res) => {
 
 module.exports = {
     displayAllTrees,
+    displayArea,
     addComment,
     displayOneTree,
     buyOneTree,
     lockOneTree,
+    calcTreeValue,
 };

@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const leavesFunctions = require("../functions/leaves-functions");
+const {validationResult} = require("express-validator");
 
 const displayAllUsers = (req, res) => {
     User.find()
@@ -39,17 +40,14 @@ const startingFreeTrees = async (req, res) => {
                         owner: userJustCreated._id,
                         nickname: treeName,
                     },
-                );
-                // .then(() =>
-                //     res.json({message: "Tree allocated"}),
-                // )
-                // .catch(error => res.status(500).json({message: error}));
-                logFunctions.writeIntoLog(
-                    userJustCreated._id,
-                    "has recieved",
-                    resp[randomArrayKey]._id,
-                    res,
-                );
+                ).then(() => {
+                    logFunctions.writeIntoLog(
+                        userJustCreated._id,
+                        "has recieved",
+                        resp[randomArrayKey]._id,
+                        res,
+                    );
+                });
             }
         })
         .catch(error => res.status(500).json({message: error}));
@@ -102,13 +100,22 @@ const saveData = async (req, res, hash, leaves) => {
 };
 
 const signUp = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     const hash = bcrypt.hashSync(req.body.password, saltRounds);
     // console.log(hash);
     const leaves = await leavesFunctions.leavesAtStart();
     saveData(req, res, hash, leaves);
+    return "done";
 };
 
 const login = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     User.findOne({email: req.body.email})
         .then(resp => {
             if (!resp) {
@@ -138,6 +145,7 @@ const login = (req, res) => {
             });
         })
         .catch(error => console.log(error));
+    return "done";
 };
 
 module.exports = {signUp, login, displayAllUsers};
