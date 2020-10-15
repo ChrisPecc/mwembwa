@@ -1,0 +1,43 @@
+.regle_de_jeu{
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #8BBC55;
+    z-index: 999;
+    cursor: default;
+    animation: xenophobe 0.9s ease infinite;
+}
+.regle_de_jeu:hover{
+    bottom: -110px;
+    left: -100px;
+    animation-name: none;
+    transition-duration: 0.6s;
+}
+.icon_regle_de_jeu{
+    position: absolute;
+    top: 40px;
+    right: 52px;
+    /* transition-duration: 0.4s; */
+    cursor: help;
+}
+/* .icon_regle_de_jeu:hover{
+    top: 35px;
+    right: 40px;
+} */
+@keyframes xenophobe {
+    from{
+        bottom: -150px;
+        left: -150px;
+    }
+    50%{
+        bottom: -155px;
+        left: -155px;
+    }
+    to{
+        bottom: -148px;
+        left: -148px;
+    }
+}

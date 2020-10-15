@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Tree from "../model/tree";
 import User from "../model/users";
 import nameFunctions from "./random-name";
@@ -79,6 +80,7 @@ const calcTreeValueOwnedByOthers = (
 };
 
 const displayAllTrees = (req, res) => {
+    console.log("bonjour");
     Tree.find()
         .populate("owner")
         .then(resp => res.status(200).json({message: resp}))
@@ -111,6 +113,7 @@ const displayArea = (req, res) => {
 };
 
 const displayOneTree = (req, res) => {
+    console.log("ça va?");
     Tree.findOne({_id: req.params.id})
         .populate("former_owners.username")
         .populate("owner")

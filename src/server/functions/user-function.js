@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import User from "../model/users";
 import Tree from "../model/tree";
 

@@ -8,8 +8,9 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
+import MainMap from "./components/map/map-view";
+// eslint-disable-next-line no-unused-vars
+import css from "./main.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-// import HelloWorld from "./components/hello";
-import Test from "./components/inscriptiontest";
-
-ReactDOM.render(<Test />, document.querySelector("#app"));
+ReactDOM.render(<MainMap />, document.querySelector("#app"));

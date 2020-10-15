@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import LogEntry from "../model/log";
 
 const writeIntoLog = (user_id, actionDone, tree_id, res) => {
