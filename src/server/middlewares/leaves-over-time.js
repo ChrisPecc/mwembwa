@@ -37,7 +37,7 @@ const leavesOverTime = async (req, res, next) => {
     });
 
     const userTrees = await Promise.all(promises);
-    console.log(`usertree${userTrees[2][0]}`);
+    // console.log(`usertree${userTrees[2][0]}`);
 
     // users.forEach(async user =>
     for (const [i, element] of users.entries()) {
