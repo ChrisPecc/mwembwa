@@ -1,13 +1,28 @@
 import React from "react";
 import axios from "axios";
 import {useForm} from "react-hook-form";
+import {CirclePicker} from "react-color";
 // import {createPortal} from "react-dom";
 // import Button from "../game-page/button";
+// import Close from "./close";
 
 const Signup = ({show = false}) => {
     if (!show) {
         return null;
     }
+    const getRandomColor = () => {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+    let colorSelected = getRandomColor();
+
+    const handleClickColor = e => {
+        colorSelected = e.target.title;
+    };
     const {register, handleSubmit} = useForm();
 
     const submitValues = data => {
@@ -59,6 +74,47 @@ const Signup = ({show = false}) => {
                     type={"password"}
                     className={"password"}
                     ref={register}
+                />
+                <label>{"confirm password"}</label>
+                {/* <input
+                    name={"confirm-password"}
+                    type={"password"}
+                    className={"confirmPassword"}
+                /> */}
+                <div className={"formRandomColor"}>
+                    <span
+                        onClick={e => handleClickColor(e)}
+                        className={"randomColor"}>
+                        <CirclePicker colors={[getRandomColor()]} />
+                    </span>
+                    <span
+                        onClick={e => handleClickColor(e)}
+                        className={"randomColor"}>
+                        <CirclePicker colors={[getRandomColor()]} />
+                    </span>
+                    <span
+                        onClick={e => handleClickColor(e)}
+                        className={"randomColor"}>
+                        <CirclePicker colors={[getRandomColor()]} />
+                    </span>
+                    <span
+                        onClick={e => handleClickColor(e)}
+                        className={"randomColor"}>
+                        <CirclePicker colors={[getRandomColor()]} />
+                    </span>
+                    <span
+                        onClick={e => handleClickColor(e)}
+                        className={"randomColor"}>
+                        <CirclePicker colors={[getRandomColor()]} />
+                    </span>
+                </div>
+                <input
+                    name={"color"}
+                    type={"color"}
+                    className={"color"}
+                    value={colorSelected}
+                    ref={register}
+                    hidden
                 />
                 <br /> <br />
                 <input type={"submit"} value={"submit"} />
