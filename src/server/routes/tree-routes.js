@@ -1,7 +1,7 @@
 const express = require("express");
 const treerouter = express.Router();
 const treesFunctions = require("../functions/trees-functions");
-const auth = require("../middlewares/auth");
+// const auth = require("../middlewares/auth");
 
 const {body} = require("express-validator");
 
@@ -18,12 +18,13 @@ treerouter.post(
 treerouter.post(
     "/buy/:id",
     [body("user_id").trim().escape(), body("comment").trim().escape()],
+    // auth.authMiddleware,
     treesFunctions.buyOneTree,
 );
 treerouter.post(
     "/lock/:id",
     [body("user_id").trim().escape()],
-    auth.authMiddleware,
+    // auth.authMiddleware,
     treesFunctions.lockOneTree,
 );
 
